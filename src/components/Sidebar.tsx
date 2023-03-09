@@ -7,28 +7,28 @@ function Sidebar() {
 	const { pathname } = useRouter();
 
 	return (
-		<div className="sticky top-0 left-0 h-screen">
-			<Link href="/">
-				<h1 className="relative py-3 text-3xl font-medium capitalize text-white">
+		<div className="fixed bottom-0 z-10  w-full bg-[#16151b] sm:sticky sm:top-0 sm:left-0 sm:h-screen">
+			<Link href="/" className=" relative hidden sm:flex">
+				<h1 className="py-3 text-3xl font-medium capitalize text-white">
 					<span className="text-purple-500">My</span>Podcast.
 				</h1>
-				<div className="absolute top-2 right-4 text-[11px] text-gray-500">
+				<div className="absolute top-1 -right-1 text-[11px] text-gray-500">
 					GH
 				</div>
 			</Link>
 			<nav>
-				<ul className="mt-5 flex w-full flex-col gap-4 text-gray-400">
+				<ul className="flex w-full justify-center gap-4 py-3 text-gray-400 sm:mt-5 sm:flex-col sm:py-0">
 					{sideLinks.map((data) => {
 						return (
 							<Link
 								className={` ${
 									pathname === data.path && "my-hover"
-								} hover:my-hover flex items-center gap-3 py-2 px-3`}
+								} hover:my-hover flex items-center gap-3 py-2 px-4`}
 								key={data.id}
 								href={`/${data.path}`}
 							>
 								<p className="text-xl">{data.icon}</p>
-								<p>{data.name}</p>
+								<p className="hidden md:flex">{data.name}</p>
 							</Link>
 						);
 					})}
