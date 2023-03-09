@@ -1,7 +1,11 @@
 import React from "react";
 
 function SearchPage() {
-	return <div>SearchPage</div>;
+	return (
+		<div className=" text-white">
+			<p>searchpage</p>
+		</div>
+	);
 }
 
 export default SearchPage;
