@@ -1,0 +1,71 @@
+@import url("https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap");
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+	* {
+		box-sizing: border-box;
+		padding: 0;
+		margin: 0;
+		font-family: "Roboto", sans-serif;
+	}
+
+	html,
+	body {
+		min-height: 100vh;
+		background-color: #16151b;
+	}
+
+	a {
+		color: inherit;
+		text-decoration: none;
+	}
+
+	.my-hover {
+		background-color: rgba(112, 58, 212, 0.911);
+		border-radius: 6px;
+		transition: 0.3s ease;
+		color: white;
+		width: fit-content;
+	}
+
+	/* =======audioplayer=====
+	 */
+	.me {
+		background-color: rgb(60, 26, 182);
+		color: white;
+		border-radius: 10px;
+		.rhap_download-progress {
+			background-color: white;
+		}
+		.rhap_current-time,
+		.rhap_total-time {
+			color: white;
+		}
+		.rhap_progress-indicator {
+			background-color: rgb(255, 102, 0);
+			top: -4px;
+			width: 13px;
+			height: 13px;
+		}
+		.rhap_button-clear.rhap_repeat-button {
+			color: white;
+		}
+		svg {
+			color: white;
+		}
+		.rhap_volume-indicator {
+			background-color: white;
+		}
+		.rhap_progress-filled {
+			background-color: rgb(255, 102, 0);
+		}
+	}
+
+	.my-max {
+		width: min(100% - 20px, 1300px) !important;
+		margin-inline: auto;
+	}
+}
