@@ -8,13 +8,13 @@ function Sidebar() {
 
 	return (
 		<div className="fixed bottom-0 z-10  w-full bg-[#16151b] sm:sticky sm:top-0 sm:left-0 sm:h-screen">
-			<Link href="/" className=" relative hidden sm:flex">
-				<h1 className="py-3 text-3xl font-medium capitalize text-white">
-					<span className="text-purple-500">My</span>Podcast.
+			<Link href="/" className=" relative block hidden text-center md:block">
+				<h1 className="relative mx-auto w-fit py-3 text-4xl font-medium capitalize text-white">
+					<span className="text-purple-500">Po</span>dcast.
+					<div className="absolute top-0 -right-3 text-[11px] text-gray-500">
+						GH
+					</div>
 				</h1>
-				<div className="absolute top-1 -right-1 text-[11px] text-gray-500">
-					GH
-				</div>
 			</Link>
 			<nav>
 				<ul className="flex w-full justify-center gap-4 py-3 text-gray-400 sm:mt-5 sm:flex-col sm:py-0">
