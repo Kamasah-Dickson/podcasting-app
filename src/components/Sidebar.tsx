@@ -1,31 +1,20 @@
 import { sideLinks } from "@/sidebarData";
 import Link from "next/link";
-import { useState, useEffect } from "react";
 import { useRouter } from "next/router";
 
-function Sidebar() {
-	const { pathname } = useRouter();
-	const [location, setLocation] = useState("");
+interface locationProp {
+	location: string;
+}
 
-	useEffect(() => {
-		try {
-			const getCountry = async () => {
-				const response = await fetch("https://ipapi.co/json/");
-				const data = await response.json();
-				setLocation(data.country_name);
-			};
-			getCountry();
-		} catch (error) {
-			console.log(error);
-		}
-	}, []);
+function Sidebar({ location }: locationProp) {
+	const { pathname } = useRouter();
 
 	return (
 		<div className="fixed bottom-0 z-10  w-full bg-[#16151b] sm:sticky sm:top-0 sm:left-0 sm:h-screen">
 			<Link href="/" className=" relative hidden text-center md:block">
 				<h1 className="relative mx-auto w-fit py-3 text-4xl font-medium capitalize text-white">
 					<span className="text-purple-500">Po</span>dcast.
-					<div className="absolute top-0 -right-3 text-[11px] text-gray-500">
+					<div className="absolute -top-2 -right-3 text-[11px] text-gray-500">
 						{location}
 					</div>
 				</h1>
