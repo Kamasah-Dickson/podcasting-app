@@ -1,15 +1,38 @@
 import Link from "next/link";
-import React from "react";
+import { useContext } from "react";
+import { PodcastContext } from "@/podcastContext";
+import CardSkeleton from "@/src/components/CardSkeleton";
+import SinglePodcast from "@/src/components/SinglePodcast";
 
 function ExplorePage() {
+	const { error, podcast, loading } = useContext(PodcastContext);
+	console.log(podcast);
 	return (
 		<div>
-			<div className=" flex items-start justify-between py-3 text-white md:items-center">
-				<h1>Explore</h1>
+			<div className="sticky top-0 left-0 mx-auto mt-5 flex w-full max-w-[400px] items-start justify-between bg-[#16151b] py-3 text-white shadow-lg md:mt-0 md:max-w-full md:items-center">
+				<h1 className="text-xl md:text-2xl">Top Podcasts</h1>
 				<h3 className=" cursor-pointer select-none border border-[#876fc9] bg-[#36027a] p-[0.3rem] text-sm font-bold text-[#ad76f5] active:scale-[1.08]">
 					<Link href="/explore/popular">Explore Popular</Link>
 				</h3>
 			</div>
+			{loading && <CardSkeleton />}
+			{error ? (
+				<div className="flex h-screen flex-col items-center justify-center gap-2">
+					<h1 className="text-center text-3xl text-[red] md:text-5xl">
+						{error}😥
+					</h1>
+					<p className="text-red-600">
+						Please check your internet and try again
+						<span className="text-2xl">😪</span>
+					</p>
+				</div>
+			) : (
+				<div className="mt-3 grid grid-cols-1 gap-4 pb-16 lg:grid-cols-3">
+					{podcast.map((data, index) => {
+						return <SinglePodcast key={index} data={data} />;
+					})}
+				</div>
+			)}
 		</div>
 	);
 }
