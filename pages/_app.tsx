@@ -6,15 +6,17 @@ import { useState, useEffect } from "react";
 
 import { useRouter } from "next/router";
 import Link from "next/link";
+import { PodcastProvider } from "@/podcastContext";
 
 export default function App({ Component, pageProps }: AppProps) {
 	const path = useRouter();
+	const { pathname } = path;
 	const [location, setLocation] = useState("");
 
 	useEffect(() => {
-		path.push("/explore");
+		pathname == "/" && path.push("/explore");
 		// eslint-disable-next-line react-hooks/exhaustive-deps
-	}, []);
+	}, [pathname]);
 
 	useEffect(() => {
 		try {
@@ -30,13 +32,16 @@ export default function App({ Component, pageProps }: AppProps) {
 	}, []);
 
 	return (
-		<>
-			<div className="my-max mx-auto grid w-full grid-cols-1 gap-5 pt-3 sm:flex sm:justify-between sm:gap-7 md:pt-0">
-				<div className="row-start-3 sm:flex-[2]">
+		<PodcastProvider>
+			<div className="my-max mx-auto grid w-full grid-cols-1 gap-1 pt-3 sm:flex sm:justify-between sm:gap-3 md:pt-0">
+				<div className="row-start-3 sm:flex-1">
 					<Sidebar location={location} />
 				</div>
-				<main className="row-start-1 sm:flex-[9]">
-					<Link href="/" className=" relative block text-center md:hidden">
+				<main className="row-start-1 sm:flex-[4]">
+					<Link
+						href="/explore"
+						className=" relative block text-center md:hidden"
+					>
 						<h1 className="relative mx-auto w-fit py-3 text-4xl font-medium capitalize text-white">
 							<span className="text-purple-500">Po</span>dcast.
 							<div className="absolute -top-2 -right-3 text-[11px] text-gray-500">
@@ -51,10 +56,10 @@ export default function App({ Component, pageProps }: AppProps) {
 				<div className="block h-screen sm:hidden sm:h-full">
 					<Component {...pageProps} />
 				</div>
-				<div className="row-start-2 mx-auto w-full max-w-[300px] sm:flex-[4]">
+				<div className="row-start-2 mx-auto w-full sm:flex-[2]">
 					<PlayingNow />
 				</div>
 			</div>
-		</>
+		</PodcastProvider>
 	);
 }
