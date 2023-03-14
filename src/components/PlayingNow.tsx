@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect, Dispatch, SetStateAction } from "react";
 import AudioPlayer from "react-h5-audio-player";
 import "react-h5-audio-player/lib/styles.css";
 import me from "../img/EgLF6Jmi_4x.jpg";
@@ -6,9 +6,22 @@ import Image from "next/image";
 import Head from "next/head";
 import { BsRepeat1, BsPlayFill } from "react-icons/bs";
 import { FiPause } from "react-icons/fi";
+import { useRouter } from "next/router";
 
-function PlayingNow() {
+interface playingProp {
+	playing: boolean;
+	setPlaying: Dispatch<SetStateAction<boolean>>;
+}
+
+function PlayingNow({ playing, setPlaying }: playingProp) {
 	const [title, setTitle] = useState("Podcast");
+	const router = useRouter();
+	const { pathname } = router;
+
+	useEffect(() => {
+		setPlaying(false);
+		// eslint-disable-next-line react-hooks/exhaustive-deps
+	}, [pathname]);
 
 	const customIcons = {
 		play: <BsPlayFill size={35} />,
@@ -39,7 +52,7 @@ function PlayingNow() {
 			<svg
 				stroke="currentColor"
 				fill="none"
-				stroke-width="2.25"
+				strokeWidth="2.25"
 				viewBox="0 0 24 24"
 				strokeLinecap="round"
 				strokeLinejoin="round"
