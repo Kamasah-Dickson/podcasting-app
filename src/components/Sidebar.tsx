@@ -1,17 +1,20 @@
 import { sideLinks } from "@/sidebarData";
 import Link from "next/link";
 import { useRouter } from "next/router";
+import { Dispatch, SetStateAction } from "react";
 import { TbLayoutSidebarRight } from "react-icons/tb";
 
 interface locationProp {
 	location: string;
+	setPlaying: Dispatch<SetStateAction<boolean>>;
+	playing: boolean;
 }
 
-function Sidebar({ location }: locationProp) {
+function Sidebar({ location, setPlaying, playing }: locationProp) {
 	const { pathname } = useRouter();
 
 	return (
-		<div className="fixed bottom-0 z-10  w-full bg-[#16151b] sm:sticky sm:top-0 sm:left-0 sm:h-screen">
+		<div className="fixed left-0 bottom-0 z-20  w-full bg-[#16151b] sm:sticky sm:top-0 sm:left-0 sm:h-screen">
 			<Link href="/explore" className=" relative hidden text-center md:block">
 				<h1 className="relative mx-auto w-fit py-3 text-4xl font-medium capitalize text-white">
 					<span className="text-purple-500">Po</span>dcast.
@@ -27,7 +30,7 @@ function Sidebar({ location }: locationProp) {
 							<Link
 								className={` ${
 									pathname === data.path && "my-hover"
-								} hover:my-hover flex w-fit items-center gap-3 py-2 px-4`}
+								} hover:my-hover flex w-fit items-center gap-3 py-2 px-4 active:scale-[1.2]`}
 								key={data.id}
 								href={`${data.path}`}
 							>
@@ -38,15 +41,17 @@ function Sidebar({ location }: locationProp) {
 					})}
 
 					{/* change this to toggle paying now */}
-					<Link
-						href="/explore/1"
-						className={` ${"//my-hover"} hover:my-hover flex w-fit items-center gap-3 py-2 px-4`}
+					<button
+						onClick={() => setPlaying((prev) => !prev)}
+						className={` ${
+							playing && "my-hover"
+						} hover:my-hover flex w-fit items-center gap-3 py-2 px-4 active:scale-[1.2]`}
 					>
 						<p className="text-xl">
 							<TbLayoutSidebarRight />
 						</p>
 						<p className="hidden md:flex">Playing now</p>
-					</Link>
+					</button>
 				</ul>
 			</nav>
 		</div>
