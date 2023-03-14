@@ -14,8 +14,6 @@ export default function App({ Component, pageProps }: AppProps) {
 	const [location, setLocation] = useState<string>("");
 	const [playing, setPlaying] = useState<boolean>(false);
 
-	console.log(playing);
-
 	useEffect(() => {
 		pathname == "/" && path.push("/explore");
 		// eslint-disable-next-line react-hooks/exhaustive-deps
@@ -26,7 +24,7 @@ export default function App({ Component, pageProps }: AppProps) {
 			const getCountry = async () => {
 				const response = await fetch("https://ipapi.co/json/");
 				const data = await response.json();
-				setLocation(data.country_name);
+				setLocation(data.country_code);
 			};
 			getCountry();
 		} catch (error) {
