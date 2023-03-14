@@ -11,7 +11,10 @@ import { PodcastProvider } from "@/podcastContext";
 export default function App({ Component, pageProps }: AppProps) {
 	const path = useRouter();
 	const { pathname } = path;
-	const [location, setLocation] = useState("");
+	const [location, setLocation] = useState<string>("");
+	const [playing, setPlaying] = useState<boolean>(false);
+
+	console.log(playing);
 
 	useEffect(() => {
 		pathname == "/" && path.push("/explore");
@@ -34,8 +37,12 @@ export default function App({ Component, pageProps }: AppProps) {
 	return (
 		<PodcastProvider>
 			<div className="my-max mx-auto grid w-full grid-cols-1 gap-1 pt-3 sm:flex sm:justify-between sm:gap-3 md:pt-0">
-				<div className="row-start-3 sm:flex-1">
-					<Sidebar location={location} />
+				<div className="row-start-3 flex flex-1 md:flex-[2]">
+					<Sidebar
+						location={location}
+						setPlaying={setPlaying}
+						playing={playing}
+					/>
 				</div>
 				<main className="row-start-1 sm:flex-[4]">
 					<Link
@@ -49,15 +56,13 @@ export default function App({ Component, pageProps }: AppProps) {
 							</div>
 						</h1>
 					</Link>
-					<div className="hidden sm:block">
+					<div>
 						<Component {...pageProps} />
 					</div>
 				</main>
-				<div className="block h-screen sm:hidden sm:h-full">
-					<Component {...pageProps} />
-				</div>
+
 				<div className="row-start-2 mx-auto w-full sm:flex-[2]">
-					<PlayingNow />
+					<PlayingNow playing={playing} setPlaying={setPlaying} />
 				</div>
 			</div>
 		</PodcastProvider>
