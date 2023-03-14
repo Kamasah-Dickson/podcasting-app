@@ -6,10 +6,9 @@ import SinglePodcast from "@/src/components/SinglePodcast";
 
 function ExplorePage() {
 	const { error, podcast, loading } = useContext(PodcastContext);
-	console.log(podcast);
 	return (
 		<div>
-			<div className="sticky top-0 left-0 mx-auto mt-5 flex w-full max-w-[400px] items-start justify-between bg-[#16151b] py-3 text-white shadow-lg md:mt-0 md:max-w-full md:items-center">
+			<div className="sticky top-0 left-0 mx-auto mt-5 flex w-full max-w-[400px] items-start justify-between bg-[#16151b] py-3 text-white md:mt-0 md:max-w-full md:items-center">
 				<h1 className="text-xl md:text-2xl">Top Podcasts</h1>
 				<h3 className=" cursor-pointer select-none border border-[#876fc9] bg-[#36027a] p-[0.3rem] text-sm font-bold text-[#ad76f5] active:scale-[1.08]">
 					<Link href="/explore/popular">Explore Popular</Link>
@@ -22,12 +21,12 @@ function ExplorePage() {
 						{error}😥
 					</h1>
 					<p className="text-red-600">
-						Please check your internet and try again
+						Please check your internet and or try again later
 						<span className="text-2xl">😪</span>
 					</p>
 				</div>
 			) : (
-				<div className="mt-3 grid grid-cols-1 gap-4 pb-16 lg:grid-cols-3">
+				<div className="mt-3 grid grid-cols-1 gap-4 lg:grid-cols-3">
 					{podcast.map((data, index) => {
 						return <SinglePodcast key={index} data={data} />;
 					})}
