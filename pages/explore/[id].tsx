@@ -1,59 +1,39 @@
+import { useEffect, useState, useContext } from "react";
+import { useRouter } from "next/router";
 import axios from "axios";
+import { PodcastContext } from "@/podcastContext";
 
-export const getStaticPaths = async () => {
-	const response1 = await fetch("https://ipapi.co/json/");
-	const { country_code } = await response1.json();
-	const response2 = await axios.get(
-		`https://listen-api.listennotes.com/api/v2/top_podcasts?country=${country_code}`,
-		{
-			headers: {
-				"X-ListenAPI-Key": process.env.API_KEY,
-			},
-		}
-	);
+function ListenToSingleCast() {
+	const [single, setSingle] = useState([{}]);
+	const { query } = useRouter();
+	const { id } = query;
 
-	const data = response2.data.podcasts;
+	const { setError } = useContext(PodcastContext);
+	useEffect(() => {
+		const fetchSingles = async () => {
+			try {
+				const options = {
+					method: "GET",
+					url: "https://podcast-api1.p.rapidapi.com/channel/v3",
+					params: { cid: id },
+					headers: {
+						"X-RapidAPI-Key":
+							"3463f3b065msh692b26db6cdd5e0p1f756ajsnf4e5cc452936",
+						"X-RapidAPI-Host": "podcast-api1.p.rapidapi.com",
+					},
+				};
 
-	interface data {
-		id: string;
-		title: string;
-		audio: string;
-	}
-	const paths = data.map((data: data) => {
-		return {
-			params: { id: data.id.toString() },
+				const response = await axios.request(options);
+				console.log(response.data.data);
+			} catch (error: any) {
+				setError(error.message);
+			}
 		};
-	});
 
-	return {
-		paths,
-		fallback: false,
-	};
-};
+		fetchSingles();
+	}, []);
 
-export const getStaticProps = async (context: any) => {
-	const id = context.params.id;
-
-	const response1 = await fetch("https://ipapi.co/json/");
-	const { country_code } = await response1.json();
-	const response2 = await axios.get(
-		`https://listen-api.listennotes.com/api/v2/podcasts/${id}?country=${country_code}`,
-		{
-			headers: {
-				"X-ListenAPI-Key": process.env.API_KEY,
-			},
-		}
-	);
-
-	return {
-		props: {
-			singlePod: { response2 },
-		},
-	};
-};
-
-function FetchPodcasts({}) {
-	return <div>FetchPodcasts</div>;
+	return <div>ListenToSingleCast</div>;
 }
 
-export default FetchPodcasts;
+export default ListenToSingleCast;
