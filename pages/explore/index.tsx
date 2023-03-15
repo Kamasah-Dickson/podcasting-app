@@ -14,7 +14,7 @@ function ExplorePage() {
 					<Link href="/explore/popular">Explore Popular</Link>
 				</h3>
 			</div>
-			{loading && <CardSkeleton />}
+			{loading && <CardSkeleton cards={25} />}
 			{error ? (
 				<div className="flex h-screen flex-col items-center justify-center gap-2">
 					<h1 className="text-center text-3xl text-[red] md:text-5xl">
