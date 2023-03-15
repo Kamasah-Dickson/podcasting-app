@@ -10,27 +10,13 @@ function CardSkeleton({ cards }: cardProp) {
 		.fill(0)
 		.map((data, index) => {
 			return (
-				<>
-					<div key={index} className="card w-full max-w-xs">
-						<Skeleton height={180} width={200} baseColor="#1c1c1d" />
-						<div>
-							<Skeleton
-								width={150}
-								height={13}
-								duration={1.5}
-								baseColor="#1c1c1d"
-								highlightColor="#515151"
-							/>
-							<Skeleton
-								width={180}
-								height={13}
-								duration={1.5}
-								baseColor="#1c1c1d"
-								highlightColor="#515151"
-							/>
-						</div>
+				<div key={index} className="card w-full max-w-xs">
+					<Skeleton height={180} width={200} />
+					<div>
+						<Skeleton width={150} height={13} duration={1.5} />
+						<Skeleton width={180} height={13} duration={1.5} />
 					</div>
-				</>
+				</div>
 			);
 		});
 
