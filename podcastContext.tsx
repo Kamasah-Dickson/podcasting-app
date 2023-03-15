@@ -45,7 +45,6 @@ export function PodcastProvider({ children }: Props) {
 			try {
 				const response = await fetch("https://ipapi.co/json/");
 				const { country_code } = await response.json();
-				console.log(country_code);
 
 				const options = {
 					method: "GET",
