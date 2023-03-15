@@ -1,9 +1,16 @@
-import { useState, useEffect, createContext, ReactNode } from "react";
+import {
+	useState,
+	useEffect,
+	createContext,
+	Dispatch,
+	SetStateAction,
+	ReactNode,
+} from "react";
 import axios from "axios";
 import { StaticImageData } from "next/image";
 
 interface podcast {
-	id: string;
+	cid: string;
 	title: string;
 	audio: string;
 	author: string;
@@ -14,12 +21,14 @@ interface podcastType {
 	podcast: podcast[];
 	error: string;
 	loading: boolean;
+	setError: Dispatch<SetStateAction<string>>;
 }
 
 export const PodcastContext = createContext<podcastType>({
 	podcast: [],
 	error: "",
 	loading: true,
+	setError: () => {},
 });
 
 interface Props {
@@ -32,7 +41,6 @@ export function PodcastProvider({ children }: Props) {
 	const [loading, setLoading] = useState<boolean>(true);
 
 	useEffect(() => {
-		setLoading(false);
 		const fetchPodcasts = async () => {
 			try {
 				const response = await fetch("https://ipapi.co/json/");
@@ -52,9 +60,11 @@ export function PodcastProvider({ children }: Props) {
 
 				const response2 = await axios.request(options);
 				setPodcast(response2.data.data.list.slice(0, 25));
+				setLoading(false);
 			} catch (error: any) {
 				console.error(error);
 				setError(error.message);
+				setLoading(false);
 			}
 		};
 
@@ -62,7 +72,7 @@ export function PodcastProvider({ children }: Props) {
 	}, []);
 
 	return (
-		<PodcastContext.Provider value={{ podcast, error, loading }}>
+		<PodcastContext.Provider value={{ podcast, error, setError, loading }}>
 			{children}
 		</PodcastContext.Provider>
 	);
