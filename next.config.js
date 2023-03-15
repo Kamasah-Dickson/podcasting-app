@@ -11,6 +11,7 @@ const nextConfig = {
 			"is1-ssl.mzstatic.com",
 			"images.transistor.fm",
 			"assets.pippa.io",
+			"megaphone.imgix.net",
 		],
 	},
 };
