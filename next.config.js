@@ -12,6 +12,7 @@ const nextConfig = {
 			"images.transistor.fm",
 			"assets.pippa.io",
 			"megaphone.imgix.net",
+			"s3.castbox.fm",
 		],
 	},
 };

@@ -8,6 +8,7 @@ import { SkeletonTheme } from "react-loading-skeleton";
 import { useRouter } from "next/router";
 import Link from "next/link";
 import { PodcastProvider } from "@/podcastContext";
+import axios from "axios";
 
 export default function App({ Component, pageProps }: AppProps) {
 	const path = useRouter();
@@ -31,6 +32,21 @@ export default function App({ Component, pageProps }: AppProps) {
 		} catch (error) {
 			console.log(error);
 		}
+	}, []);
+
+	useEffect(() => {
+		const getData = async () => {
+			const response = await fetch("https://api.taddy.co/api/v1/podcasts", {
+				headers: {
+					"x-api-key":
+						"c9b56c02e3b1cbe7a56bbc09433ded1139039bcec77d335b8f5956b23d5a78471dd246321a502643d7615d8c97d0cdd01a",
+				},
+			});
+
+			const data = await response.json();
+			console.log(data);
+		};
+		getData();
 	}, []);
 
 	return (
