@@ -7,7 +7,6 @@ import {
 	ReactNode,
 } from "react";
 import axios from "axios";
-import { StaticImageData } from "next/image";
 
 interface podcast {
 	cid: string;
