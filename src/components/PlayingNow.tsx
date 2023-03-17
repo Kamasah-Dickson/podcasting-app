@@ -86,7 +86,7 @@ function PlayingNow({ playing, setPlaying }: playingProp) {
 					<div className="h-[240px] w-full rounded-2xl p-1 md:p-0">
 						<Image
 							src={me}
-							priority
+							priority={true}
 							alt="sdfsd"
 							className=" h-full w-full rounded-2xl object-cover"
 						/>
@@ -97,7 +97,7 @@ function PlayingNow({ playing, setPlaying }: playingProp) {
 					</div>
 					<AudioPlayer
 						autoPlay={false}
-						src="/bensound-elevate.mp3"
+						src="spotify:show:5Gdk8veAatNDiSr6duyfJo"
 						loop={false}
 						className="me"
 						customIcons={customIcons}
