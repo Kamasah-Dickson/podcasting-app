@@ -1,6 +1,5 @@
 import React from "react";
 import Skeleton from "react-loading-skeleton";
-import "react-loading-skeleton/dist/Skeleton.css";
 
 interface cardProp {
 	cards: string | number;
