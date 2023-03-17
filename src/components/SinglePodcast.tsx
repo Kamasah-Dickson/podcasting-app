@@ -1,4 +1,4 @@
-import Image, { StaticImageData } from "next/image";
+import Image from "next/image";
 import Link from "next/link";
 
 interface data {
@@ -26,6 +26,7 @@ function SinglePodcast({ data }: podcastProp) {
 					src={data.big_cover_url}
 					width={100}
 					height={100}
+					priority
 				/>
 			</div>
 			<div className="py-1 text-left leading-[1] text-white">
