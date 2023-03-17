@@ -1,18 +1,9 @@
-import {
-	useEffect,
-	useState,
-	useContext,
-	SetStateAction,
-	Dispatch,
-} from "react";
+import { useEffect, useState, useContext } from "react";
 import { useRouter } from "next/router";
 import axios from "axios";
 import { PodcastContext } from "@/podcastContext";
 import Image from "next/image";
 import Skeleton from "react-loading-skeleton";
-import "react-loading-skeleton/dist/Skeleton.css";
-
-interface SingleType {}
 
 interface singleProp {
 	title: string;
