@@ -97,7 +97,7 @@ function PlayingNow({ playing, setPlaying }: playingProp) {
 					</div>
 					<AudioPlayer
 						autoPlay={false}
-						src="spotify:show:5Gdk8veAatNDiSr6duyfJo"
+						// src="spotify:show:5Gdk8veAatNDiSr6duyfJo"
 						loop={false}
 						className="me"
 						customIcons={customIcons}

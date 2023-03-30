@@ -5,11 +5,10 @@ import type { AppProps } from "next/app";
 import { useState, useEffect } from "react";
 import { SkeletonTheme } from "react-loading-skeleton";
 import "react-loading-skeleton/dist/Skeleton.css";
-
+// import { ApolloProvider } from "@apollo/client";
 import { useRouter } from "next/router";
 import Link from "next/link";
 import { PodcastProvider } from "@/podcastContext";
-import axios from "axios";
 
 export default function App({ Component, pageProps }: AppProps) {
 	const path = useRouter();
@@ -37,6 +36,7 @@ export default function App({ Component, pageProps }: AppProps) {
 
 	return (
 		<PodcastProvider>
+			{/* <ApolloProvider client={client}> */}
 			<SkeletonTheme baseColor="#1c1c1d" highlightColor="#515151">
 				<div className="my-max mx-auto grid w-full grid-cols-1 gap-1 pt-3 sm:flex sm:justify-between sm:gap-3 md:pt-0">
 					<div className="row-start-3 flex flex-1 md:flex-[2]">
@@ -68,6 +68,7 @@ export default function App({ Component, pageProps }: AppProps) {
 					</div>
 				</div>
 			</SkeletonTheme>
+			{/* </ApolloProvider> */}
 		</PodcastProvider>
 	);
 }
