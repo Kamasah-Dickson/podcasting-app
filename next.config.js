@@ -3,16 +3,13 @@ const nextConfig = {
 	reactStrictMode: true,
 	images: {
 		domains: [
-			"is4-ssl.mzstatic.com",
-			"is2-ssl.mzstatic.com",
-			"ssl-static.libsyn.com",
-			"is3-ssl.mzstatic.com",
-			"is5-ssl.mzstatic.com",
-			"is1-ssl.mzstatic.com",
-			"images.transistor.fm",
-			"assets.pippa.io",
-			"megaphone.imgix.net",
-			"s3.castbox.fm",
+			"d3t3ozftmdmh3i.cloudfront.net",
+			"s3.amazonaws.com",
+			"afr.net",
+			"ott.bgea.live",
+			"deow9bq0xqvbj.cloudfront.net",
+			"d3wo5wojvuv7l.cloudfront.net",
+			"episodes.castos.com",
 		],
 	},
 };

@@ -98,6 +98,7 @@ function PlayingNow({ playing, setPlaying }: playingProp) {
 					<AudioPlayer
 						autoPlay={false}
 						// src="spotify:show:5Gdk8veAatNDiSr6duyfJo"
+						// src="http://soundcloud.com/ben-greer-728962594"
 						loop={false}
 						className="me"
 						customIcons={customIcons}
