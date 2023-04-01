@@ -2,6 +2,37 @@ import Head from "next/head";
 import React from "react";
 
 function SearchPage() {
+	// ======search=====================
+
+	// searchForTerm(term:"Billy Graham", filterForTypes:[PODCASTSERIES]){
+	// 	searchId
+	// 	podcastSeries{
+	// 	  uuid
+	// 	  name
+	// 	  rssUrl
+	// 	}
+	// 	podcastEpisodes{
+	// 	  uuid
+	// 	  name
+	// 	  audioUrl
+	// 	}
+	//   }
+
+	// getMultiplePodcastSeries(uuids:[
+
+	// ];){
+	// 	uuid
+	// 	name
+	// 	itunesId
+	// 	description
+	// 	imageUrl
+	// 	itunesInfo{
+	// 	  uuid
+	// 	  publisherName
+	// 	}
+	//   }
+	// ===========end of search=====================
+
 	return (
 		<>
 			<Head key="111">
