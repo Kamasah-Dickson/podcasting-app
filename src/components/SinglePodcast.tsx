@@ -1,6 +1,5 @@
 import Image from "next/image";
 import Link from "next/link";
-import me from "../img/EgLF6Jmi_4x.jpg";
 
 interface data {
 	imageUrl: string;
