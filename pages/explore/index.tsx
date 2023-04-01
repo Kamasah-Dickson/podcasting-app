@@ -19,72 +19,40 @@ function ExplorePage() {
 		});
 
 		const query = `
-  query {
-	  getMultiplePodcastSeries(uuids:[	
-	  	"762eb657-df93-4cfe-8699-ec34552aeaf9",
-		"08c861b2-930b-4919-a24a-3489c7e1a40d",
-		"8710840e-572f-46a2-a53c-5bffc26d71b2",
-		"fd50cfe2-de9c-4684-bc39-13a7470e6a66",
-		"1db200bd-d645-4e37-b700-1d660e7016fe",
-		"5be08a07-06b6-426d-8445-0fc47e959547",
-		"de11cc1c-4d72-4ff7-9620-3cba361b53b0",
-		"5b68e721-b0ef-4ea5-801a-348a6d493549",
-		"ab4d5e01-5de0-4272-ba75-8a16db8a9e8a",
-		"242f0eaa-5165-41db-8bb4-7e1e56f99d2f",
-		"232491f8-92ee-4564-b650-c60305e529d7",
-		]){
-		  uuid
-		  name
-		  itunesId
-		  description
-		  imageUrl
-		  itunesInfo{
-			uuid
-			publisherName
-			baseArtworkUrlOf(size: 640)
-		  }
-		}
-	  }
-	
-	
-`;
+				query {
+					getMultiplePodcastSeries(uuids:[	
+							"762eb657-df93-4cfe-8699-ec34552aeaf9",
+							"08c861b2-930b-4919-a24a-3489c7e1a40d",
+							"8710840e-572f-46a2-a53c-5bffc26d71b2",
+							"fd50cfe2-de9c-4684-bc39-13a7470e6a66",
+							"1db200bd-d645-4e37-b700-1d660e7016fe",
+							"5be08a07-06b6-426d-8445-0fc47e959547",
+							"de11cc1c-4d72-4ff7-9620-3cba361b53b0",
+							"5b68e721-b0ef-4ea5-801a-348a6d493549",
+							"ab4d5e01-5de0-4272-ba75-8a16db8a9e8a",
+							"242f0eaa-5165-41db-8bb4-7e1e56f99d2f",
+							"232491f8-92ee-4564-b650-c60305e529d7",
+							]){
+								uuid
+									name
+									itunesId
+									description
+									imageUrl
+								itunesInfo{
+									uuid
+									publisherName
+										baseArtworkUrlOf(size: 640)
+								}
+							}
+					}
+						`;
 
-		// ======search=====================
-
-		// searchForTerm(term:"Billy Graham", filterForTypes:[PODCASTSERIES]){
-		// 	searchId
-		// 	podcastSeries{
-		// 	  uuid
-		// 	  name
-		// 	  rssUrl
-		// 	}
-		// 	podcastEpisodes{
-		// 	  uuid
-		// 	  name
-		// 	  audioUrl
-		// 	}
-		//   }
-
-		// getMultiplePodcastSeries(uuids:[
-
-		// ];){
-		// 	uuid
-		// 	name
-		// 	itunesId
-		// 	description
-		// 	imageUrl
-		// 	itunesInfo{
-		// 	  uuid
-		// 	  publisherName
-		// 	}
-		//   }
-		// ===========end of search=====================
 		client
 			.request(query)
 			.then((response: any) => {
 				setPodcasts(response.getMultiplePodcastSeries);
-				console.log(response.getMultiplePodcastSeries);
 				setLoading(false);
+				setError(null);
 			})
 			.catch((error) => {
 				setLoading(false);
@@ -108,17 +76,17 @@ function ExplorePage() {
 			{error ? (
 				<div className="flex h-screen flex-col items-center justify-center gap-2">
 					<h1 className="text-center text-3xl text-[red] md:text-5xl">
-						{error}😥
+						Something went wrong😥
 					</h1>
 					<p className="text-center text-red-600">
-						Please check your internet and or try again later
+						Please check your internet and try again
 						<span className="text-2xl">😪</span>
 					</p>
 				</div>
 			) : (
 				<div className="mt-3 grid grid-cols-1 gap-4 lg:grid-cols-3">
 					{podcasts.map((data: any) => {
-						return <SinglePodcast key={data.id} data={data} />;
+						return <SinglePodcast key={data.uuid} data={data} />;
 					})}
 				</div>
 			)}
@@ -141,29 +109,3 @@ export default ExplorePage;
 // 		console.log(error);
 // 	}
 // }, []);
-
-// const query = gql`
-// 	mutation getToken($client_id: String!, $client_secret: String!) {
-// 		requestAccessToken(
-// 			input: {
-// 				grant_type: CLIENT_CREDENTIALS
-// 				client_id: $client_id
-// 				client_secret: $client_secret
-// 			}
-// 		) {
-// 			access_token
-// 			token_type
-// 		}
-// 	}
-// `;
-// const variables = {
-// 	client_id: "98b5a379-50ef-4496-a325-dfd20910a51f",
-// 	client_secret: "wh4L0bnoEEAhcmTt8mhw3KPAO1gIH7DMkp2Fwbqa",
-// };
-
-// const client = new GraphQLClient("https://api.podchaser.com/graphql");
-
-// client.request(query, variables).then((response: any) => {
-// 	console.log(response.requestAccessToken.access_token);
-// 	setToken(response.requestAccessToken.access_token);
-// });
