@@ -14,6 +14,8 @@ import { BsRepeat1, BsPlayFill } from "react-icons/bs";
 import { FiPause } from "react-icons/fi";
 import { useRouter } from "next/router";
 import { PodcastContext } from "../context/podcastContext";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 interface playingProp {
 	playingNow: boolean;
@@ -81,6 +83,10 @@ function PlayingNow({ playingNow, setPlayingNow }: playingProp) {
 		loop: <BsRepeat1 />,
 	};
 
+	function Error() {
+		toast.error("The data for this podcast is broken");
+	}
+
 	return (
 		<>
 			<Head key="111">
@@ -95,7 +101,7 @@ function PlayingNow({ playingNow, setPlayingNow }: playingProp) {
 						<Image
 							src={playSinglePodcast.imageUrl ? playSinglePodcast.imageUrl : me}
 							priority={true}
-							alt="sdfsd"
+							alt={playSinglePodcast.name}
 							width={100}
 							height={100}
 							className=" h-full w-full rounded-2xl object-cover"
@@ -104,9 +110,9 @@ function PlayingNow({ playingNow, setPlayingNow }: playingProp) {
 					<div className="p-2 text-center text-white">
 						{playSinglePodcast.description ? (
 							<h1 className=" text-xl font-bold">
-								{playSinglePodcast.description.length > 45
-									? playSinglePodcast.description.slice(0, 45) + "..."
-									: playSinglePodcast.description.slice(0, 45)}
+								{playSinglePodcast?.description?.length > 45
+									? playSinglePodcast?.description?.slice(0, 45) + "..."
+									: playSinglePodcast?.description?.slice(0, 45)}
 							</h1>
 						) : (
 							<h1 className=" text-2xl">
@@ -129,15 +135,17 @@ function PlayingNow({ playingNow, setPlayingNow }: playingProp) {
 						loop={false}
 						className="me"
 						customIcons={customIcons}
+						onError={Error}
 						volume={60}
 						onPlay={() =>
 							setTitle(
-								playSinglePodcast.description.length > 45
-									? playSinglePodcast.description.slice(0, 45) + "..."
-									: playSinglePodcast.description.slice(0, 45)
+								playSinglePodcast?.description?.length > 45
+									? playSinglePodcast?.description?.slice(0, 45) + "..."
+									: playSinglePodcast?.description?.slice(0, 45)
 							)
 						}
 					/>
+					<ToastContainer />
 				</div>
 			</div>
 		</>
