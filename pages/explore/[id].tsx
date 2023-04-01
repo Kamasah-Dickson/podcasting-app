@@ -16,7 +16,8 @@ interface PodcastInterface {
 }
 
 function ListenToSingleCast() {
-	const { setPlaySinglePodcast } = useContext(PodcastContext);
+	const { setPlaySinglePodcast, playSinglePodcast } =
+		useContext(PodcastContext);
 
 	const [loading, setLoading] = useState(true);
 	const [error, setError] = useState(null);
@@ -106,7 +107,7 @@ function ListenToSingleCast() {
 			) : (
 				<div className="mt-3 text-3xl text-[#cbcbce]">
 					<h1 className="mx-auto mb-3 max-w-[400px] text-center">
-						{fullPodcast.name}
+						{fullPodcast?.name}
 					</h1>
 					<div className="mx-auto grid w-full grid-cols-1 gap-3 rounded-lg bg-[#131218] p-5 shadow-lg shadow-[#00000049] lg:grid-cols-2 xl:sticky xl:top-0">
 						{loading ? (
@@ -117,8 +118,8 @@ function ListenToSingleCast() {
 									width={200}
 									height={200}
 									property="true"
-									src={fullPodcast.imageUrl}
-									alt={fullPodcast.name}
+									src={fullPodcast?.imageUrl}
+									alt={fullPodcast?.name}
 									className="h-full w-full"
 								/>
 							</div>
@@ -137,18 +138,18 @@ function ListenToSingleCast() {
 						) : (
 							<div className="flex-3 h-full w-full">
 								<h1 className="py-1 font-medium text-white">
-									{fullPodcast.name}
+									{fullPodcast?.name}
 								</h1>
 								<p className="text-sm font-normal leading-5 text-[gray]">
-									{fullPodcast.description.length > 250
-										? fullPodcast.description.substring(0, 250) + "..."
-										: fullPodcast.description}
+									{fullPodcast?.description?.length > 250
+										? fullPodcast?.description?.substring(0, 250) + "..."
+										: fullPodcast?.description}
 								</p>
 								<div className="mt-5 text-lg text-[grey]">
 									<p className="text-white">
 										Language:
 										<span className="ml-1 text-base font-normal text-[grey]">
-											{fullPodcast.language}
+											{fullPodcast?.language}
 										</span>
 									</p>
 									<p className="text-white">
@@ -163,7 +164,7 @@ function ListenToSingleCast() {
 											style={{ overflowWrap: "anywhere" }}
 											className="ml-2 text-sm text-[grey]"
 										>
-											{fullPodcast.genres[0]}
+											{fullPodcast?.genres[0]}
 										</span>
 									</p>
 								</div>
@@ -178,7 +179,9 @@ function ListenToSingleCast() {
 									<div
 										key={data.uuid}
 										onClick={() => setPlaySinglePodcast(data)}
-										className="mx-auto flex w-full max-w-[300px] cursor-pointer flex-col flex-wrap items-center justify-center gap-5 rounded-lg bg-[#0b0a0fad] p-3 shadow-sm shadow-black transition-colors hover:bg-[#2d0796] lg:max-w-none lg:flex-row"
+										className={`${
+											playSinglePodcast.uuid === data.uuid && "active-podcast"
+										} mx-auto flex w-full max-w-[300px] cursor-pointer flex-col flex-wrap items-center justify-center gap-5 rounded-lg bg-[#0b0a0fad] p-3 shadow-sm shadow-black transition-colors hover:bg-[#2d0796] lg:max-w-none lg:flex-row`}
 									>
 										<div className="h-auto w-full flex-1 lg:h-full ">
 											<Image
@@ -199,12 +202,12 @@ function ListenToSingleCast() {
 											<p className=" hidden text-sm text-[grey] lg:text-[12px] xl:flex">
 												{data.description
 													? data?.description?.substring(0, 90) + "..."
-													: fullPodcast.description?.substring(0, 90) + "..."}
+													: fullPodcast?.description?.substring(0, 90) + "..."}
 											</p>
 											<p className="flex text-sm text-[grey] lg:text-[12px] xl:hidden">
 												{data.description
 													? data?.description?.substring(0, 70) + "..."
-													: fullPodcast.description?.substring(0, 70) + "..."}
+													: fullPodcast?.description?.substring(0, 70) + "..."}
 											</p>
 											{data.episodeNumber && (
 												<p className="mt-3 text-sm text-white">
