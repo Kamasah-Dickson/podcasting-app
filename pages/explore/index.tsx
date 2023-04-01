@@ -62,14 +62,11 @@ function ExplorePage() {
 
 	return (
 		<div>
-			<div className="sticky top-0 left-0 z-30 mx-auto mt-5 flex w-full max-w-[400px] items-start justify-between bg-[#16151b] py-3 text-white md:mt-0 md:max-w-full md:items-center">
+			<div className="sticky top-0 left-0 z-30 mx-auto mt-5 hidden w-full max-w-[400px] bg-[#16151b] py-3 text-white md:mt-0 md:flex md:max-w-full">
 				<h1 className="text-xl md:text-2xl">
-					Top <span className="text-2xl font-bold text-purple-500">Po</span>
+					<span className="text-3xl font-bold text-purple-500">Po</span>
 					dcasts
 				</h1>
-				<h3 className=" cursor-pointer select-none border border-[#876fc9] bg-[#36027a] p-[0.3rem] text-sm font-bold text-[#ad76f5] active:scale-[1.08]">
-					<Link href="/explore/popular">Explore Popular</Link>
-				</h3>
 			</div>
 			{loading && <CardSkeleton cards={25} />}
 			{error ? (
