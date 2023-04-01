@@ -28,6 +28,7 @@ function Sidebar({ location, setPlayingNow, playingNow }: locationProp) {
 					{sideLinks.map((data) => {
 						return (
 							<Link
+								as="fetch"
 								className={` ${
 									pathname === data.path && "my-hover"
 								} hover:my-hover flex w-fit items-center gap-3 py-2 px-4 active:scale-[1.2]`}
