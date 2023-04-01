@@ -6,11 +6,11 @@ import { TbLayoutSidebarRight } from "react-icons/tb";
 
 interface locationProp {
 	location: string;
-	setPlaying: Dispatch<SetStateAction<boolean>>;
-	playing: boolean;
+	setPlayingNow: Dispatch<SetStateAction<boolean>>;
+	playingNow: boolean;
 }
 
-function Sidebar({ location, setPlaying, playing }: locationProp) {
+function Sidebar({ location, setPlayingNow, playingNow }: locationProp) {
 	const { pathname } = useRouter();
 
 	return (
@@ -42,9 +42,9 @@ function Sidebar({ location, setPlaying, playing }: locationProp) {
 
 					{/* change this to toggle paying now */}
 					<button
-						onClick={() => setPlaying((prev) => !prev)}
+						onClick={() => setPlayingNow((prev) => !prev)}
 						className={` ${
-							playing && "my-hover"
+							playingNow && "my-hover"
 						} hover:my-hover flex w-fit items-center gap-3 py-2 px-4 active:scale-[1.2]`}
 					>
 						<p className="text-xl">
