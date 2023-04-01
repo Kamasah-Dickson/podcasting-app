@@ -92,8 +92,14 @@ function PlayingNow({ playing, setPlaying }: playingProp) {
 						/>
 					</div>
 					<div className="p-2 text-center text-white">
-						<h1>Titledfgdfgdfgfdgfgdfgf</h1>
-						<h1>sub titlesdfds</h1>
+						<h1 className=" text-2xl">
+							<span className="text-purple-500">Po</span>dcast.
+						</h1>
+						<div className="scrolling-carousel">
+							<h1 className="scrolling-text text-right">
+								Now playing - nothing
+							</h1>
+						</div>
 					</div>
 					<AudioPlayer
 						autoPlay={false}

@@ -73,4 +73,32 @@
 			background-color: rgb(255, 102, 0);
 		}
 	}
+
+	.scrolling-carousel {
+		position: relative;
+		width: 100%;
+		height: 20px;
+		overflow: hidden;
+	}
+
+	.scrolling-text {
+		position: absolute;
+		white-space: nowrap;
+		animation: scroll 10s linear infinite;
+		/* Set initial position to outside of container */
+		transform: translateX(100%);
+	}
+
+	@keyframes scroll {
+		0% {
+			/* Move text back into container */
+			transform: translateX(100%);
+		}
+
+		100% {
+			/* Stay at end position for 1 second, then move back to start */
+			transform: translateX(-100%);
+			animation-delay: 1s;
+		}
+	}
 }

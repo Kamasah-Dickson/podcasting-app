@@ -175,7 +175,7 @@ function ListenToSingleCast() {
 								return (
 									<div
 										key={data.uuid}
-										className="mx-auto flex w-full max-w-[300px] cursor-pointer flex-col flex-wrap items-center justify-center gap-5 rounded-lg bg-[#0b0a0fad] p-3 shadow-sm shadow-black transition-colors hover:bg-[#0a091465] lg:max-w-none lg:flex-row"
+										className="mx-auto flex w-full max-w-[300px] cursor-pointer flex-col flex-wrap items-center justify-center gap-5 rounded-lg bg-[#0b0a0fad] p-3 shadow-sm shadow-black transition-colors hover:bg-[#2d0796] lg:max-w-none lg:flex-row"
 									>
 										<div className="h-auto w-full flex-1 lg:h-full ">
 											<Image
