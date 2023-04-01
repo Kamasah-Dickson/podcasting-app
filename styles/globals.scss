@@ -84,7 +84,7 @@
 	.scrolling-text {
 		position: absolute;
 		white-space: nowrap;
-		animation: scroll 10s linear infinite;
+		animation: scroll 15s linear infinite;
 		/* Set initial position to outside of container */
 		transform: translateX(100%);
 	}

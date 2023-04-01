@@ -1,4 +1,10 @@
-import { useState, useEffect, Dispatch, SetStateAction } from "react";
+import {
+	useState,
+	useEffect,
+	Dispatch,
+	SetStateAction,
+	useContext,
+} from "react";
 import AudioPlayer from "react-h5-audio-player";
 import "react-h5-audio-player/lib/styles.css";
 import me from "../img/EgLF6Jmi_4x.jpg";
@@ -7,19 +13,21 @@ import Head from "next/head";
 import { BsRepeat1, BsPlayFill } from "react-icons/bs";
 import { FiPause } from "react-icons/fi";
 import { useRouter } from "next/router";
+import { PodcastContext } from "../context/podcastContext";
 
 interface playingProp {
-	playing: boolean;
-	setPlaying: Dispatch<SetStateAction<boolean>>;
+	playingNow: boolean;
+	setPlayingNow: Dispatch<SetStateAction<boolean>>;
 }
 
-function PlayingNow({ playing, setPlaying }: playingProp) {
+function PlayingNow({ playingNow, setPlayingNow }: playingProp) {
 	const [title, setTitle] = useState("Podcast");
 	const router = useRouter();
 	const { pathname } = router;
+	const { playSinglePodcast } = useContext(PodcastContext);
 
 	useEffect(() => {
-		setPlaying(false);
+		setPlayingNow(false);
 		// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, [pathname]);
 
@@ -85,25 +93,37 @@ function PlayingNow({ playing, setPlaying }: playingProp) {
 				<div className="rounded-lg bg-[#2d0796] p-5 md:p-3">
 					<div className="h-[240px] w-full rounded-2xl p-1 md:p-0">
 						<Image
-							src={me}
+							src={playSinglePodcast.imageUrl ? playSinglePodcast.imageUrl : me}
 							priority={true}
 							alt="sdfsd"
+							width={100}
+							height={100}
 							className=" h-full w-full rounded-2xl object-cover"
 						/>
 					</div>
 					<div className="p-2 text-center text-white">
-						<h1 className=" text-2xl">
-							<span className="text-purple-500">Po</span>dcast.
-						</h1>
-						<div className="scrolling-carousel">
-							<h1 className="scrolling-text text-right">
-								Now playing - nothing
+						{playSinglePodcast.description ? (
+							<h1 className=" text-xl font-bold">
+								{playSinglePodcast.description}
 							</h1>
+						) : (
+							<h1 className=" text-2xl">
+								<span className="text-purple-500">Po</span>dcast.
+							</h1>
+						)}
+						<div className="scrolling-carousel">
+							{playSinglePodcast.name ? (
+								<h1 className="scrolling-text text-right">
+									Playing-Now {playSinglePodcast.name}
+								</h1>
+							) : (
+								<h1>Now playingNow - nothing</h1>
+							)}
 						</div>
 					</div>
 					<AudioPlayer
 						autoPlay={false}
-						// src="spotify:show:5Gdk8veAatNDiSr6duyfJo"
+						src={playSinglePodcast.audioUrl}
 						loop={false}
 						className="me"
 						customIcons={customIcons}
