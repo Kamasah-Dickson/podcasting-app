@@ -27,7 +27,6 @@ function SinglePodcast({ data }: podcastProp) {
 					width={100}
 					height={100}
 					priority
-					crossOrigin="anonymous"
 				/>
 			</div>
 			<div className="py-1 text-left leading-[1] text-white">
