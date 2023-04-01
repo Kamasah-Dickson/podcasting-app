@@ -13,6 +13,7 @@ interface PodchaserContextType {
 			name: string;
 			description: string;
 			imageUrl: string;
+			uuid: string;
 		}>
 	>;
 	playSinglePodcast: {
@@ -20,6 +21,7 @@ interface PodchaserContextType {
 		name: string;
 		description: string;
 		imageUrl: string;
+		uuid: string;
 	};
 }
 
@@ -30,6 +32,7 @@ export const PodcastContext = createContext<PodchaserContextType>({
 		name: "",
 		description: "",
 		imageUrl: "",
+		uuid: "",
 	},
 });
 interface Props {
@@ -42,6 +45,7 @@ export function PodcastProvider({ children }: Props) {
 		name: "",
 		description: "",
 		imageUrl: "",
+		uuid: "",
 	});
 
 	return (
