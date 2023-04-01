@@ -4,23 +4,24 @@ import Image from "next/image";
 import Skeleton from "react-loading-skeleton";
 import { GraphQLClient } from "graphql-request";
 import { useRouter } from "next/router";
+import { PodcastContext } from "@/src/context/podcastContext";
 
 interface PodcastInterface {
 	imageUrl: string;
 	name: string;
 	description: string;
+	datePublished: string;
+	genres: string[];
+	language: string;
 }
 
 function ListenToSingleCast() {
-	const [singleCast, setSingleCase] = useState<PodcastInterface>({
-		imageUrl: "",
-		name: "",
-		description: "",
-	});
+	const { setPlaySinglePodcast } = useContext(PodcastContext);
+
 	const [loading, setLoading] = useState(true);
 	const [error, setError] = useState(null);
 	const [episodes, setEpisodes] = useState([]);
-	const [fullPodcast, setfullPodcast] = useState({
+	const [fullPodcast, setfullPodcast] = useState<PodcastInterface>({
 		description: "",
 		name: "",
 		imageUrl: "",
@@ -51,9 +52,11 @@ function ListenToSingleCast() {
 							  language
 							  genres
 							  datePublished
-							 
+							  
 							  episodes{
 								uuid
+							  	datePublished
+								episodeNumber
 								name
 								description
 								audioUrl
@@ -67,9 +70,8 @@ function ListenToSingleCast() {
 			.request(query)
 			.then((data: any) => {
 				setEpisodes(data.getPodcastSeries.episodes);
+				// console.log(data.getPodcastSeries.episodes);
 				setfullPodcast(data.getPodcastSeries);
-				// console.log(data.getPodcastSeries);
-
 				setLoading(false);
 				setError(null);
 			})
@@ -175,6 +177,7 @@ function ListenToSingleCast() {
 								return (
 									<div
 										key={data.uuid}
+										onClick={() => setPlaySinglePodcast(data)}
 										className="mx-auto flex w-full max-w-[300px] cursor-pointer flex-col flex-wrap items-center justify-center gap-5 rounded-lg bg-[#0b0a0fad] p-3 shadow-sm shadow-black transition-colors hover:bg-[#2d0796] lg:max-w-none lg:flex-row"
 									>
 										<div className="h-auto w-full flex-1 lg:h-full ">
@@ -203,6 +206,11 @@ function ListenToSingleCast() {
 													? data?.description?.substring(0, 70) + "..."
 													: fullPodcast.description?.substring(0, 70) + "..."}
 											</p>
+											{data.episodeNumber && (
+												<p className="mt-3 text-sm text-white">
+													Episode:{data.episodeNumber}
+												</p>
+											)}
 										</div>
 									</div>
 								);

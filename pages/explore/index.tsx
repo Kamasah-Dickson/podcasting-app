@@ -60,7 +60,6 @@ function ExplorePage() {
 			});
 	}, []);
 
-	// ==========end of fetching podcasts================
 	return (
 		<div>
 			<div className="sticky top-0 left-0 z-30 mx-auto mt-5 flex w-full max-w-[400px] items-start justify-between bg-[#16151b] py-3 text-white md:mt-0 md:max-w-full md:items-center">
@@ -95,17 +94,3 @@ function ExplorePage() {
 }
 
 export default ExplorePage;
-
-// ==============================
-// useEffect(() => {
-// 	try {
-// 		const getCountry = async () => {
-// 			const response = await fetch("https://ipapi.co/json/");
-// 			const data = await response.json();
-// 			setLocation(data.country_code);
-// 		};
-// 		getCountry();
-// 	} catch (error) {
-// 		console.log(error);
-// 	}
-// }, []);
