@@ -106,7 +106,7 @@ function ListenToSingleCast() {
 					<h1 className="mx-auto mb-3 max-w-[400px] text-center">
 						{fullPodcast.name}
 					</h1>
-					<div className="sticky top-0 mx-auto grid w-full grid-cols-1 gap-3 rounded-lg bg-[#131218] p-5 shadow-lg shadow-[#00000049] lg:grid-cols-2">
+					<div className="mx-auto grid w-full grid-cols-1 gap-3 rounded-lg bg-[#131218] p-5 shadow-lg shadow-[#00000049] lg:grid-cols-2 xl:sticky xl:top-0">
 						{loading ? (
 							<Skeleton width={200} height={200} duration={1.4} />
 						) : (

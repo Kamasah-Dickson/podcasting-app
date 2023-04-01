@@ -82,7 +82,7 @@ function PlayingNow({ playing, setPlaying }: playingProp) {
 				<link rel="icon" href="/favicon.ico" />
 			</Head>
 			<div className="mx-auto max-w-[300px] pt-3 md:sticky md:top-0 md:right-0 md:h-screen md:w-full">
-				<div className="rounded-lg bg-[#2d0796] p-3 md:p-3">
+				<div className="rounded-lg bg-[#2d0796] p-5 md:p-3">
 					<div className="h-[240px] w-full rounded-2xl p-1 md:p-0">
 						<Image
 							src={me}
@@ -104,7 +104,6 @@ function PlayingNow({ playing, setPlaying }: playingProp) {
 					<AudioPlayer
 						autoPlay={false}
 						// src="spotify:show:5Gdk8veAatNDiSr6duyfJo"
-						// src="http://soundcloud.com/ben-greer-728962594"
 						loop={false}
 						className="me"
 						customIcons={customIcons}
