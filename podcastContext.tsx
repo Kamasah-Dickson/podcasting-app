@@ -1,26 +1,29 @@
-import { createContext, ReactNode } from "react";
-import { ApolloClient, InMemoryCache } from "@apollo/client";
+import {
+	createContext,
+	useState,
+	Dispatch,
+	SetStateAction,
+	ReactNode,
+} from "react";
 
 interface PodchaserContextType {
-	client: ApolloClient<any>;
+	setSinglePodcast: Dispatch<SetStateAction<never[]>>;
+	singlePodcast: never[];
 }
 
-const client = new ApolloClient({
-	uri: "https://api.podchaser.com/graphql",
-	headers: {
-		Authorization: "98b5a379-50ef-4496-a325-dfd20910a51f",
-	},
-	cache: new InMemoryCache(),
+const PodcastContext = createContext<PodchaserContextType | null>({
+	setSinglePodcast: () => {},
+	singlePodcast: [],
 });
-
-const PodcastContext = createContext<PodchaserContextType | null>(null);
 interface Props {
 	children: ReactNode;
 }
 
 export function PodcastProvider({ children }: Props) {
+	const [singlePodcast, setSinglePodcast] = useState([]);
+
 	return (
-		<PodcastContext.Provider value={{ client }}>
+		<PodcastContext.Provider value={{ singlePodcast, setSinglePodcast }}>
 			{children}
 		</PodcastContext.Provider>
 	);
