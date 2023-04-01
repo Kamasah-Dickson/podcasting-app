@@ -104,7 +104,9 @@ function PlayingNow({ playingNow, setPlayingNow }: playingProp) {
 					<div className="p-2 text-center text-white">
 						{playSinglePodcast.description ? (
 							<h1 className=" text-xl font-bold">
-								{playSinglePodcast.description}
+								{playSinglePodcast.description.length > 45
+									? playSinglePodcast.description.slice(0, 45) + "..."
+									: playSinglePodcast.description.slice(0, 45)}
 							</h1>
 						) : (
 							<h1 className=" text-2xl">
@@ -127,7 +129,14 @@ function PlayingNow({ playingNow, setPlayingNow }: playingProp) {
 						loop={false}
 						className="me"
 						customIcons={customIcons}
-						onPlay={() => setTitle("Podcast - Dag Heward Mills")}
+						volume={60}
+						onPlay={() =>
+							setTitle(
+								playSinglePodcast.description.length > 45
+									? playSinglePodcast.description.slice(0, 45) + "..."
+									: playSinglePodcast.description.slice(0, 45)
+							)
+						}
 					/>
 				</div>
 			</div>
