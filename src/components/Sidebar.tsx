@@ -7,14 +7,15 @@ import { PodcastContext } from "../context/podcastContext";
 
 interface locationProp {
 	location: string;
+	setShowPlaying: Dispatch<SetStateAction<boolean>>;
 }
 
-function Sidebar({ location }: locationProp) {
+function Sidebar({ location, setShowPlaying }: locationProp) {
 	const { pathname } = useRouter();
 	const { togglePlaying, setTogglePlaying } = useContext(PodcastContext);
 
 	return (
-		<div className="fixed left-0 bottom-0 z-20  w-full bg-[#16151b] sm:sticky sm:top-0 sm:left-0 sm:h-screen">
+		<div className="fixed left-0 bottom-0 z-40 w-full bg-[#16151b] sm:sticky sm:top-0 sm:left-0 sm:h-screen">
 			<Link href="/explore" className=" relative hidden text-center md:block">
 				<h1 className="relative mx-auto w-fit py-3 text-4xl font-medium capitalize text-white">
 					<span className="text-purple-500">Po</span>dcast.
@@ -42,10 +43,12 @@ function Sidebar({ location }: locationProp) {
 
 					{/* change this to toggle playing now */}
 					<button
-						onClick={() => setTogglePlaying((prev) => !prev)}
+						onClick={() => (
+							setTogglePlaying((prev) => !prev), setShowPlaying((prev) => !prev)
+						)}
 						className={` ${
 							togglePlaying ? null : "my-hover"
-						} hover:my-hover flex w-fit items-center gap-3 py-2 px-4 active:scale-[1.2] xl:hidden`}
+						} hover:my-hover flex w-fit items-center gap-3 py-2 px-4 active:scale-[1.2] lg:hidden`}
 					>
 						<p className="text-xl">
 							<TbLayoutSidebarRight />
