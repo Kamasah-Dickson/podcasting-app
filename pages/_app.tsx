@@ -4,7 +4,7 @@ import "@/styles/globals.scss";
 import type { AppProps } from "next/app";
 import { useState, useEffect, useContext } from "react";
 import { SkeletonTheme } from "react-loading-skeleton";
-import "react-loading-skeleton/dist/Skeleton.css";
+import "react-loading-skeleton/dist/skeleton.css";
 import { useRouter } from "next/router";
 import Link from "next/link";
 import { PodcastContext, PodcastProvider } from "@/src/context/podcastContext";
