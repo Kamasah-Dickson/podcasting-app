@@ -24,8 +24,8 @@ function Sidebar({ location, setShowPlaying }: locationProp) {
 					</div>
 				</h1>
 			</Link>
-			<nav className="mx-auto w-fit">
-				<ul className="flex w-fit justify-center gap-4 py-3 text-gray-400 sm:mt-5 sm:flex-col sm:py-0">
+			<nav className="my-scroll mx-auto w-full overflow-auto xs:w-fit xs:overflow-hidden">
+				<ul className="flex w-full justify-center gap-4 py-3 text-gray-400 xs:w-fit sm:mt-5 sm:flex-col sm:py-0">
 					{sideLinks.map((data) => {
 						return (
 							<Link
