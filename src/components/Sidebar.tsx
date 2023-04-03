@@ -1,17 +1,17 @@
 import { sideLinks } from "@/sidebarData";
 import Link from "next/link";
 import { useRouter } from "next/router";
-import { Dispatch, SetStateAction } from "react";
+import { Dispatch, SetStateAction, useContext } from "react";
 import { TbLayoutSidebarRight } from "react-icons/tb";
+import { PodcastContext } from "../context/podcastContext";
 
 interface locationProp {
 	location: string;
-	setTogglePlaying: Dispatch<SetStateAction<boolean>>;
-	togglePlaying: boolean;
 }
 
-function Sidebar({ location, setTogglePlaying, togglePlaying }: locationProp) {
+function Sidebar({ location }: locationProp) {
 	const { pathname } = useRouter();
+	const { togglePlaying, setTogglePlaying } = useContext(PodcastContext);
 
 	return (
 		<div className="fixed left-0 bottom-0 z-20  w-full bg-[#16151b] sm:sticky sm:top-0 sm:left-0 sm:h-screen">
