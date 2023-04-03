@@ -1,12 +1,14 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useContext } from "react";
 import { GraphQLClient } from "graphql-request";
 import CardSkeleton from "@/src/components/CardSkeleton";
 import SinglePodcast from "@/src/components/SinglePodcast";
+import { PodcastContext } from "@/src/context/podcastContext";
 
 function ExplorePage() {
 	const [podcasts, setPodcasts] = useState([]);
 	const [loading, setLoading] = useState(true);
 	const [error, setError] = useState(null);
+	const { togglePlaying } = useContext(PodcastContext);
 
 	useEffect(() => {
 		const client = new GraphQLClient("https://api.taddy.org", {
@@ -79,7 +81,11 @@ function ExplorePage() {
 					</p>
 				</div>
 			) : (
-				<div className="mt-3 grid grid-cols-1 gap-4 lg:grid-cols-3">
+				<div
+					className={`mt-3 grid grid-cols-1 gap-4 ${"xs:grid-cols-2"} 
+						lg:grid-cols-2
+					 xl:grid-cols-3`}
+				>
 					{podcasts.map((data: any) => {
 						return <SinglePodcast key={data.uuid} data={data} />;
 					})}
