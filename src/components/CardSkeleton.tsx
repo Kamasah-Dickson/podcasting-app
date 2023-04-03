@@ -9,11 +9,18 @@ function CardSkeleton({ cards }: cardProp) {
 		.fill(0)
 		.map((data, index) => {
 			return (
-				<div key={index} className="card w-full max-w-xs">
-					<Skeleton height={180} width={200} />
+				<div
+					key={index}
+					className={`card mx-auto mt-3 grid w-full max-w-xs grid-cols-1 gap-4 ${"xs:grid-cols-2"} 
+						lg:grid-cols-2
+					 xl:grid-cols-3`}
+				>
 					<div>
-						<Skeleton width={150} height={13} duration={1.5} />
-						<Skeleton width={180} height={13} duration={1.5} />
+						<Skeleton height={180} width={200} />
+						<div>
+							<Skeleton width={150} height={13} duration={1.5} />
+							<Skeleton width={180} height={13} duration={1.5} />
+						</div>
 					</div>
 				</div>
 			);
