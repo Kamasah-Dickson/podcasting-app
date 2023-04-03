@@ -41,7 +41,6 @@ function Sidebar({ location, setShowPlaying }: locationProp) {
 						);
 					})}
 
-					{/* change this to toggle playing now */}
 					<button
 						onClick={() => (
 							setTogglePlaying((prev) => !prev), setShowPlaying((prev) => !prev)

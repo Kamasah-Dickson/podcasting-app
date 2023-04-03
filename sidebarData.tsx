@@ -2,7 +2,6 @@ import { AiOutlineSearch } from "react-icons/ai";
 import { MdOutlineTravelExplore } from "react-icons/md";
 import { BsMusicNoteBeamed } from "react-icons/bs";
 import { CiSettings } from "react-icons/ci";
-import { TbLayoutSidebarRight } from "react-icons/tb";
 
 export const sideLinks = [
 	{
