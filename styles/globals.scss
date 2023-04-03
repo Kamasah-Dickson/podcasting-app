@@ -105,4 +105,8 @@
 	.active-podcast {
 		background-color: #2d0796 !important;
 	}
+
+	.my-scroll::-webkit-scrollbar {
+		display: none;
+	}
 }
