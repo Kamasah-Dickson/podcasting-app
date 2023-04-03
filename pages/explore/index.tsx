@@ -2,7 +2,6 @@ import { useState, useEffect } from "react";
 import { GraphQLClient } from "graphql-request";
 import CardSkeleton from "@/src/components/CardSkeleton";
 import SinglePodcast from "@/src/components/SinglePodcast";
-import Link from "next/link";
 
 function ExplorePage() {
 	const [podcasts, setPodcasts] = useState([]);
