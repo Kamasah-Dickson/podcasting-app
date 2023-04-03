@@ -21,11 +21,11 @@ function PlayingNow() {
 	const [title, setTitle] = useState("Podcast");
 	const router = useRouter();
 	const { pathname } = router;
-	const { playSinglePodcast, togglePlaying, setTogglePlaying } =
+	const { playSinglePodcast, setTogglePlaying, togglePlaying } =
 		useContext(PodcastContext);
 
 	useEffect(() => {
-		setTogglePlaying(false);
+		setTogglePlaying(true);
 		// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, [pathname]);
 
@@ -93,14 +93,11 @@ function PlayingNow() {
 				<meta name="viewport" content="width=device-width, initial-scale=1" />
 				<link rel="icon" href="/favicon.ico" />
 			</Head>
-			<div
-				className={`${
-					togglePlaying ? "hidden" : "block"
-				} sm:absolute sm:right-0 lg:relative`}
-			>
-				<p className="mb-5 text-2xl text-white sm:hidden">Playing Now...</p>
+			<div className={`sm:absolute sm:right-0 lg:relative`}>
 				<div
-					className={` mx-auto mb-3 w-full max-w-[500px] rounded-lg p-1 py-5 sm:fixed sm:right-0 sm:z-30 sm:mt-0 sm:flex sm:h-screen sm:items-center sm:bg-[#0802259f] lg:relative lg:h-fit lg:bg-transparent`}
+					className={`${
+						togglePlaying && "hidden lg:block"
+					} mx-auto mb-3 w-full max-w-[500px] rounded-lg p-1 py-5 sm:fixed sm:right-0 sm:z-30 sm:mt-0 sm:flex sm:h-screen sm:items-center sm:bg-[#0802259f] lg:relative lg:h-fit lg:bg-transparent`}
 				>
 					<div className="mx-auto w-full max-w-[350px] rounded-lg bg-[#2d0796] p-5 sm:max-w-[350px] md:p-5">
 						<div className="h-[270px] w-full rounded-2xl p-1 md:p-2">
