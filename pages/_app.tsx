@@ -8,12 +8,13 @@ import "react-loading-skeleton/dist/Skeleton.css";
 import { useRouter } from "next/router";
 import Link from "next/link";
 import { PodcastProvider } from "@/src/context/podcastContext";
+import { IoIosArrowDown } from "react-icons/io";
 
 export default function App({ Component, pageProps }: AppProps) {
 	const path = useRouter();
 	const { pathname } = path;
 	const [location, setLocation] = useState<string>("");
-	const [playingNow, setPlayingNow] = useState<boolean>(false);
+	const [togglePlaying, setTogglePlaying] = useState<boolean>(false);
 
 	useEffect(() => {
 		pathname == "/" && path.push("/explore");
@@ -40,11 +41,11 @@ export default function App({ Component, pageProps }: AppProps) {
 					<div className="row-start-3 flex flex-1 md:flex-[2]">
 						<Sidebar
 							location={location}
-							setPlayingNow={setPlayingNow}
-							playingNow={playingNow}
+							setTogglePlaying={setTogglePlaying}
+							togglePlaying={togglePlaying}
 						/>
 					</div>
-					<main className="row-start-1 sm:flex-[4]">
+					<main className="row-start-1 shrink sm:flex-[3.5]">
 						<Link
 							href="/explore"
 							className=" relative block text-center md:hidden"
@@ -61,8 +62,22 @@ export default function App({ Component, pageProps }: AppProps) {
 						</div>
 					</main>
 
-					<div className="row-start-2 mx-auto w-full sm:flex-[2]">
-						<PlayingNow playingNow={playingNow} setPlayingNow={setPlayingNow} />
+					<div
+						className={`fixed ${
+							togglePlaying
+								? "hidden"
+								: "my-scroll top-0 left-0 row-start-2 mx-auto block h-[90vh] w-full overflow-y-auto bg-[#0a0825d2] sm:static sm:h-full sm:flex-[2] sm:bg-transparent sm:py-0 md:flex-[3] lg:sticky xl:flex-[2]"
+						}`}
+					>
+						<IoIosArrowDown
+							size={25}
+							className={`
+							mt-5 mb-3 w-full cursor-pointer text-white hover:text-purple-500 sm:hidden`}
+						/>
+						<PlayingNow
+							togglePlaying={togglePlaying}
+							setTogglePlaying={setTogglePlaying}
+						/>
 					</div>
 				</div>
 			</SkeletonTheme>
