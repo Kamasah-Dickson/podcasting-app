@@ -1,5 +1,4 @@
 import { useEffect, useState, useContext } from "react";
-import axios from "axios";
 import Image from "next/image";
 import Skeleton from "react-loading-skeleton";
 import { GraphQLClient } from "graphql-request";
@@ -91,7 +90,6 @@ function ListenToSingleCast() {
 			day: "numeric",
 		}
 	);
-
 
 	return (
 		<>
