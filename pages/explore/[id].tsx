@@ -176,7 +176,7 @@ function ListenToSingleCast() {
 						{loading ? (
 							<CardSkeleton cards={16} />
 						) : (
-							<div className="mt-5 grid grid-cols-2 gap-3 sm:gap-7 md:gap-10">
+							<div className="mt-5 mb-7 grid grid-cols-2 gap-3 sm:gap-7 md:gap-10">
 								{episodes.map((data: any) => {
 									return (
 										<div
@@ -198,14 +198,14 @@ function ListenToSingleCast() {
 											</div>
 											<div className="flex-[2]">
 												<h3 className="mb-3 text-base text-white">
-													{data.name.length > 40
-														? data.name.slice(0, 40) + "..."
+													{data.name.length > 35
+														? data.name.slice(0, 35) + "..."
 														: data.name}
 												</h3>
 												<p className=" hidden text-sm text-[grey] lg:text-[12px] xl:flex">
 													{data.description
-														? data?.description?.substring(0, 90) + "..."
-														: fullPodcast?.description?.substring(0, 90) +
+														? data?.description?.substring(0, 70) + "..."
+														: fullPodcast?.description?.substring(0, 70) +
 														  "..."}
 												</p>
 												<p className="flex text-sm text-[grey] lg:text-[12px] xl:hidden">

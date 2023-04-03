@@ -14,7 +14,7 @@ export default function App({ Component, pageProps }: AppProps) {
 	const { pathname } = path;
 	const [location, setLocation] = useState<string>("");
 	const [showPlaying, setShowPlaying] = useState(true);
-	const { playSinglePodcast } = useContext(PodcastContext);
+	const { playSinglePodcast, error } = useContext(PodcastContext);
 
 	useEffect(() => {
 		pathname == "/" && path.push("/explore");
@@ -61,10 +61,10 @@ export default function App({ Component, pageProps }: AppProps) {
 
 					<div
 						className={`fixed ${showPlaying && "lg:my-block hidden"}
-								 "my-scroll xl:flex-[2]" top-0 left-0 z-30 row-start-2 mx-auto block h-[90vh] w-full overflow-y-auto bg-[#0a0825de] sm:fixed sm:h-full sm:flex-[2] sm:bg-transparent sm:py-0 md:flex-[3] lg:sticky xl:flex-[2]
+								 "my-scroll xl:flex-[2]" my-scroll top-0 left-0 z-30 row-start-2 mx-auto block h-[100vh] w-full overflow-y-auto bg-[#0a0825ee] sm:fixed sm:h-full sm:flex-[2] sm:bg-transparent sm:py-0 md:flex-[3] lg:sticky xl:flex-[2]
 						`}
 					>
-						{playSinglePodcast.audioUrl && (
+						{!error && (
 							<p className="ml-16 pt-3 text-2xl font-bold text-white sm:hidden">
 								Playing Now...
 							</p>

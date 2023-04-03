@@ -1,4 +1,4 @@
-import { useState, useEffect, useContext } from "react";
+import { useState, useContext } from "react";
 import AudioPlayer from "react-h5-audio-player";
 import "react-h5-audio-player/lib/styles.css";
 import me from "../img/EgLF6Jmi_4x.jpg";
@@ -6,22 +6,13 @@ import Image from "next/image";
 import Head from "next/head";
 import { BsRepeat1, BsPlayFill } from "react-icons/bs";
 import { FiPause } from "react-icons/fi";
-import { useRouter } from "next/router";
 import { PodcastContext } from "../context/podcastContext";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
 function PlayingNow() {
 	const [title, setTitle] = useState("Podcast");
-	const router = useRouter();
-	const { pathname } = router;
-	const { playSinglePodcast, setTogglePlaying, togglePlaying } =
-		useContext(PodcastContext);
-
-	useEffect(() => {
-		setTogglePlaying(true);
-		// eslint-disable-next-line react-hooks/exhaustive-deps
-	}, [pathname]);
+	const { playSinglePodcast, togglePlaying } = useContext(PodcastContext);
 
 	const customIcons = {
 		play: <BsPlayFill size={35} />,
@@ -90,10 +81,10 @@ function PlayingNow() {
 			<div className={`sm:absolute sm:right-0 lg:relative`}>
 				<div
 					className={`${
-						togglePlaying ? "block" : " hidden lg:block"
-					} mx-auto mb-3 w-full max-w-[500px] rounded-lg p-1 py-5 sm:fixed sm:right-0 sm:z-30 sm:mt-0 sm:flex sm:h-screen sm:items-center sm:bg-[#0802259f] lg:relative lg:h-fit lg:bg-transparent`}
+						togglePlaying ? "hidden lg:block" : " block"
+					} mx-auto mb-3 w-full max-w-[500px] rounded-lg p-1 py-5 sm:fixed sm:right-0 sm:z-30 sm:mt-0 sm:flex sm:h-screen sm:items-center sm:bg-[#080225e3] lg:relative lg:h-fit lg:bg-transparent`}
 				>
-					<div className="mx-auto w-full max-w-[350px] rounded-lg bg-[#2d0796] p-5 sm:max-w-[350px] md:p-5">
+					<div className="mx-auto mb-10 w-full max-w-[350px] rounded-lg bg-[#2d0796] p-5 sm:max-w-[350px] md:p-5">
 						<div className="h-[270px] w-full rounded-2xl p-1 md:p-2">
 							<Image
 								src={
@@ -108,7 +99,7 @@ function PlayingNow() {
 						</div>
 						<div className="my-2 text-center text-white">
 							{playSinglePodcast.description ? (
-								<h1 className=" text-xl font-bold">
+								<h1 className=" py-2 text-xl font-bold">
 									{playSinglePodcast?.description?.length > 45
 										? playSinglePodcast?.description?.slice(0, 45) + "..."
 										: playSinglePodcast?.description?.slice(0, 45)}
