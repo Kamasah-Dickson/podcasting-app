@@ -23,6 +23,8 @@ interface PodchaserContextType {
 		imageUrl: string;
 		uuid: string;
 	};
+	setTogglePlaying: Dispatch<SetStateAction<boolean>>;
+	togglePlaying: boolean;
 }
 
 export const PodcastContext = createContext<PodchaserContextType>({
@@ -34,6 +36,8 @@ export const PodcastContext = createContext<PodchaserContextType>({
 		imageUrl: "",
 		uuid: "",
 	},
+	setTogglePlaying: () => {},
+	togglePlaying: false,
 });
 interface Props {
 	children: ReactNode;
@@ -48,9 +52,16 @@ export function PodcastProvider({ children }: Props) {
 		uuid: "",
 	});
 
+	const [togglePlaying, setTogglePlaying] = useState<boolean>(false);
+
 	return (
 		<PodcastContext.Provider
-			value={{ playSinglePodcast, setPlaySinglePodcast }}
+			value={{
+				playSinglePodcast,
+				setPlaySinglePodcast,
+				togglePlaying,
+				setTogglePlaying,
+			}}
 		>
 			{children}
 		</PodcastContext.Provider>
