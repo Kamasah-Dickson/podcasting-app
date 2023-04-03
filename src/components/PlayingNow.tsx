@@ -17,16 +17,12 @@ import { PodcastContext } from "../context/podcastContext";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
-interface playingProp {
-	togglePlaying: boolean;
-	setTogglePlaying: Dispatch<SetStateAction<boolean>>;
-}
-
-function PlayingNow({ togglePlaying, setTogglePlaying }: playingProp) {
+function PlayingNow() {
 	const [title, setTitle] = useState("Podcast");
 	const router = useRouter();
 	const { pathname } = router;
-	const { playSinglePodcast } = useContext(PodcastContext);
+	const { playSinglePodcast, togglePlaying, setTogglePlaying } =
+		useContext(PodcastContext);
 
 	useEffect(() => {
 		setTogglePlaying(false);
@@ -88,9 +84,6 @@ function PlayingNow({ togglePlaying, setTogglePlaying }: playingProp) {
 			"There was an error playing the podcast check your internet or the data for the podcast is broken"
 		);
 	}
-	useEffect(() => {
-		console.log(togglePlaying);
-	}, [togglePlaying]);
 
 	return (
 		<>
