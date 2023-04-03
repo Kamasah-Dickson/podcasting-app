@@ -78,11 +78,11 @@ function PlayingNow() {
 				<meta name="viewport" content="width=device-width, initial-scale=1" />
 				<link rel="icon" href="/favicon.ico" />
 			</Head>
-			<div className={`sm:absolute sm:right-0 lg:relative`}>
+			<div className={`sm:absolute sm:right-0 sm:top-0 lg:relative`}>
 				<div
 					className={`${
 						togglePlaying ? "hidden lg:block" : " block"
-					} mx-auto mb-3 w-full max-w-[500px] rounded-lg p-1 py-5 sm:fixed sm:right-0 sm:z-30 sm:mt-0 sm:flex sm:h-screen sm:items-center sm:bg-[#080225e3] lg:relative lg:h-fit lg:bg-transparent`}
+					} my-scroll my-scroll mx-auto mb-3 h-screen w-full max-w-[500px] rounded-lg p-1 py-5 sm:fixed sm:right-0 sm:z-30 sm:mt-0 sm:flex sm:h-screen sm:items-start sm:bg-[#080225e3] lg:relative lg:h-fit lg:bg-transparent`}
 				>
 					<div className="mx-auto mb-10 w-full max-w-[350px] rounded-lg bg-[#2d0796] p-5 sm:max-w-[350px] md:p-5">
 						<div className="h-[270px] w-full rounded-2xl p-1 md:p-2">
