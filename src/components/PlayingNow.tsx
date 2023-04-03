@@ -18,18 +18,18 @@ import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
 interface playingProp {
-	playingNow: boolean;
-	setPlayingNow: Dispatch<SetStateAction<boolean>>;
+	togglePlaying: boolean;
+	setTogglePlaying: Dispatch<SetStateAction<boolean>>;
 }
 
-function PlayingNow({ playingNow, setPlayingNow }: playingProp) {
+function PlayingNow({ togglePlaying, setTogglePlaying }: playingProp) {
 	const [title, setTitle] = useState("Podcast");
 	const router = useRouter();
 	const { pathname } = router;
 	const { playSinglePodcast } = useContext(PodcastContext);
 
 	useEffect(() => {
-		setPlayingNow(false);
+		setTogglePlaying(false);
 		// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, [pathname]);
 
@@ -84,8 +84,13 @@ function PlayingNow({ playingNow, setPlayingNow }: playingProp) {
 	};
 
 	function Error() {
-		toast.error("The data for this podcast is broken");
+		toast.error(
+			"There was an error playing the podcast check your internet or the data for the podcast is broken"
+		);
 	}
+	useEffect(() => {
+		console.log(togglePlaying);
+	}, [togglePlaying]);
 
 	return (
 		<>
@@ -95,57 +100,68 @@ function PlayingNow({ playingNow, setPlayingNow }: playingProp) {
 				<meta name="viewport" content="width=device-width, initial-scale=1" />
 				<link rel="icon" href="/favicon.ico" />
 			</Head>
-			<div className="mx-auto max-w-[300px] pt-3 md:sticky md:top-0 md:right-0 md:h-screen md:w-full">
-				<div className="rounded-lg bg-[#2d0796] p-5 md:p-3">
-					<div className="h-[240px] w-full rounded-2xl p-1 md:p-0">
-						<Image
-							src={playSinglePodcast.imageUrl ? playSinglePodcast.imageUrl : me}
-							priority={true}
-							alt={playSinglePodcast.name}
-							width={100}
-							height={100}
-							className=" h-full w-full rounded-2xl object-cover"
-						/>
-					</div>
-					<div className="p-2 text-center text-white">
-						{playSinglePodcast.description ? (
-							<h1 className=" text-xl font-bold">
-								{playSinglePodcast?.description?.length > 45
-									? playSinglePodcast?.description?.slice(0, 45) + "..."
-									: playSinglePodcast?.description?.slice(0, 45)}
-							</h1>
-						) : (
-							<h1 className=" text-2xl">
-								<span className="text-purple-500">Po</span>dcast.
-							</h1>
-						)}
-						<div className="scrolling-carousel">
-							{playSinglePodcast.name ? (
-								<h1 className="scrolling-text text-right">
-									Playing-Now {playSinglePodcast.name}
+			<div
+				className={`${
+					togglePlaying ? "hidden" : "block"
+				} sm:absolute sm:right-0 lg:relative`}
+			>
+				<p className="mb-5 text-2xl text-white sm:hidden">Playing Now...</p>
+				<div
+					className={` mx-auto mb-3 w-full max-w-[500px] rounded-lg p-1 py-5 sm:fixed sm:right-0 sm:z-30 sm:mt-0 sm:flex sm:h-screen sm:items-center sm:bg-[#0802259f] lg:relative lg:h-fit lg:bg-transparent`}
+				>
+					<div className="mx-auto w-full max-w-[350px] rounded-lg bg-[#2d0796] p-5 sm:max-w-[350px] md:p-5">
+						<div className="h-[270px] w-full rounded-2xl p-1 md:p-2">
+							<Image
+								src={
+									playSinglePodcast.imageUrl ? playSinglePodcast.imageUrl : me
+								}
+								priority={true}
+								alt={playSinglePodcast.name}
+								width={100}
+								height={100}
+								className=" mx-auto h-full w-[250px] rounded-2xl object-cover sm:w-full"
+							/>
+						</div>
+						<div className="my-2 text-center text-white">
+							{playSinglePodcast.description ? (
+								<h1 className=" text-xl font-bold">
+									{playSinglePodcast?.description?.length > 45
+										? playSinglePodcast?.description?.slice(0, 45) + "..."
+										: playSinglePodcast?.description?.slice(0, 45)}
 								</h1>
 							) : (
-								<h1>Now playingNow - nothing</h1>
+								<h1 className=" text-2xl">
+									<span className="text-purple-500">Po</span>dcast.
+								</h1>
 							)}
+							<div className="scrolling-carousel">
+								{playSinglePodcast.name ? (
+									<h1 className="scrolling-text text-right">
+										Now playing - {playSinglePodcast.name}
+									</h1>
+								) : (
+									<h1>Now playing - nothing</h1>
+								)}
+							</div>
 						</div>
+						<AudioPlayer
+							autoPlay={false}
+							src={playSinglePodcast.audioUrl}
+							loop={false}
+							className="me"
+							customIcons={customIcons}
+							onError={Error}
+							volume={1}
+							onPlay={() =>
+								setTitle(
+									playSinglePodcast?.description?.length > 45
+										? playSinglePodcast?.description?.slice(0, 45) + "..."
+										: playSinglePodcast?.description?.slice(0, 45)
+								)
+							}
+						/>
+						<ToastContainer limit={1} autoClose={5500} />
 					</div>
-					<AudioPlayer
-						autoPlay={false}
-						src={playSinglePodcast.audioUrl}
-						loop={false}
-						className="me"
-						customIcons={customIcons}
-						onError={Error}
-						volume={60}
-						onPlay={() =>
-							setTitle(
-								playSinglePodcast?.description?.length > 45
-									? playSinglePodcast?.description?.slice(0, 45) + "..."
-									: playSinglePodcast?.description?.slice(0, 45)
-							)
-						}
-					/>
-					<ToastContainer />
 				</div>
 			</div>
 		</>
