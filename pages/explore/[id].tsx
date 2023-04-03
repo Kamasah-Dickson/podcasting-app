@@ -4,6 +4,7 @@ import Skeleton from "react-loading-skeleton";
 import { GraphQLClient } from "graphql-request";
 import { useRouter } from "next/router";
 import { PodcastContext } from "@/src/context/podcastContext";
+import CardSkeleton from "@/src/components/CardSkeleton";
 
 interface PodcastInterface {
 	imageUrl: string;
@@ -108,14 +109,14 @@ function ListenToSingleCast() {
 					<h1 className="mx-auto mb-3 max-w-[400px] text-center">
 						{fullPodcast?.name}
 					</h1>
-					<div className="mx-auto grid w-full grid-cols-1 gap-3 rounded-lg bg-[#131218] p-5 shadow-lg shadow-[#00000049] lg:grid-cols-2 xl:sticky xl:top-0">
+					<div className="z-50 mx-auto grid grid-cols-1 gap-3 rounded-lg bg-[#131218] p-5 shadow-lg shadow-[#00000049] sm:max-w-[300px] md:max-w-full  md:grid-cols-2 md:p-3 xl:sticky xl:top-0">
 						{loading ? (
 							<Skeleton width={200} height={200} duration={1.4} />
 						) : (
-							<div className=" h-full w-full flex-1">
+							<div className=" h-full w-full ">
 								<Image
-									width={200}
-									height={200}
+									width={100}
+									height={100}
 									property="true"
 									src={fullPodcast?.imageUrl}
 									alt={fullPodcast?.name}
@@ -135,8 +136,8 @@ function ListenToSingleCast() {
 								</div>
 							</div>
 						) : (
-							<div className="flex-3 h-full w-full">
-								<h1 className="py-1 font-medium text-white">
+							<div className="h-full w-full">
+								<h1 className="py-1 text-2xl font-medium text-white">
 									{fullPodcast?.name}
 								</h1>
 								<p className="text-sm font-normal leading-5 text-[gray]">
@@ -172,52 +173,58 @@ function ListenToSingleCast() {
 					</div>
 					<div className="mt-20 lg:mt-10">
 						<h3 className="text-center lg:text-left">Episodes</h3>
-						<div className="mt-5 grid grid-cols-1 gap-10 md:grid-cols-2">
-							{episodes.map((data: any) => {
-								return (
-									<div
-										key={data.uuid}
-										onClick={() => setPlaySinglePodcast(data)}
-										className={`${
-											playSinglePodcast.uuid === data.uuid && "active-podcast"
-										} mx-auto flex w-full max-w-[300px] cursor-pointer flex-col flex-wrap items-center justify-center gap-5 rounded-lg bg-[#0b0a0fad] p-3 shadow-sm shadow-black transition-colors hover:bg-[#2d0796] lg:max-w-none lg:flex-row`}
-									>
-										<div className="h-auto w-full flex-1 lg:h-full ">
-											<Image
-												width={100}
-												height={100}
-												src={data?.imageUrl}
-												alt={data.name}
-												priority
-												className="h-full w-full object-cover"
-											/>
-										</div>
-										<div className="flex-[2]">
-											<h3 className="mb-3 text-base text-white">
-												{data.name.length > 40
-													? data.name.slice(0, 40) + "..."
-													: data.name}
-											</h3>
-											<p className=" hidden text-sm text-[grey] lg:text-[12px] xl:flex">
-												{data.description
-													? data?.description?.substring(0, 90) + "..."
-													: fullPodcast?.description?.substring(0, 90) + "..."}
-											</p>
-											<p className="flex text-sm text-[grey] lg:text-[12px] xl:hidden">
-												{data.description
-													? data?.description?.substring(0, 70) + "..."
-													: fullPodcast?.description?.substring(0, 70) + "..."}
-											</p>
-											{data.episodeNumber && (
-												<p className="mt-3 text-sm text-white">
-													Episode:{data.episodeNumber}
+						{loading ? (
+							<CardSkeleton cards={16} />
+						) : (
+							<div className="mt-5 grid grid-cols-2 gap-3 sm:gap-7 md:gap-10">
+								{episodes.map((data: any) => {
+									return (
+										<div
+											key={data.uuid}
+											onClick={() => setPlaySinglePodcast(data)}
+											className={`${
+												playSinglePodcast.uuid === data.uuid && "active-podcast"
+											} mx-auto flex w-full max-w-[270px] cursor-pointer flex-col flex-wrap items-center justify-center gap-5 rounded-lg bg-[#0b0a0fad] p-3 shadow-sm shadow-black transition-colors hover:bg-[#2d0796] md:flex-row lg:max-w-none lg:flex-col xl:flex-row`}
+										>
+											<div className="h-auto w-full flex-1 lg:h-full ">
+												<Image
+													width={100}
+													height={100}
+													src={data?.imageUrl}
+													alt={data.name}
+													priority
+													className="h-full w-full object-cover"
+												/>
+											</div>
+											<div className="flex-[2]">
+												<h3 className="mb-3 text-base text-white">
+													{data.name.length > 40
+														? data.name.slice(0, 40) + "..."
+														: data.name}
+												</h3>
+												<p className=" hidden text-sm text-[grey] lg:text-[12px] xl:flex">
+													{data.description
+														? data?.description?.substring(0, 90) + "..."
+														: fullPodcast?.description?.substring(0, 90) +
+														  "..."}
 												</p>
-											)}
+												<p className="flex text-sm text-[grey] lg:text-[12px] xl:hidden">
+													{data.description
+														? data?.description?.substring(0, 70) + "..."
+														: fullPodcast?.description?.substring(0, 70) +
+														  "..."}
+												</p>
+												{data.episodeNumber && (
+													<p className="mt-3 text-sm text-white">
+														Episode:{data.episodeNumber}
+													</p>
+												)}
+											</div>
 										</div>
-									</div>
-								);
-							})}
-						</div>
+									);
+								})}
+							</div>
+						)}
 					</div>
 				</div>
 			)}
