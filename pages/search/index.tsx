@@ -47,6 +47,10 @@ function SearchPage() {
 					placeholder="Search Podcast..."
 					className=" mx-auto w-full rounded-md border-2 border-[#6041b6] bg-transparent p-1 text-white outline-1 outline-[white] placeholder:pl-2 placeholder:text-sm placeholder:text-[#6d6a6a]"
 				/>
+				<div className="grid h-screen content-center text-center text-white">
+					<h1 className="text-4xl">Comming Soon🔥</h1>
+					<p>Page Under Construction🚧</p>
+				</div>
 			</div>
 		</>
 	);
