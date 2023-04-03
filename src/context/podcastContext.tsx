@@ -25,6 +25,8 @@ interface PodchaserContextType {
 	};
 	setTogglePlaying: Dispatch<SetStateAction<boolean>>;
 	togglePlaying: boolean;
+	setError: Dispatch<SetStateAction<null>>;
+	error: unknown;
 }
 
 export const PodcastContext = createContext<PodchaserContextType>({
@@ -37,7 +39,9 @@ export const PodcastContext = createContext<PodchaserContextType>({
 		uuid: "",
 	},
 	setTogglePlaying: () => {},
-	togglePlaying: false,
+	togglePlaying: true,
+	setError: () => {},
+	error: null,
 });
 interface Props {
 	children: ReactNode;
@@ -52,7 +56,8 @@ export function PodcastProvider({ children }: Props) {
 		uuid: "",
 	});
 
-	const [togglePlaying, setTogglePlaying] = useState<boolean>(false);
+	const [togglePlaying, setTogglePlaying] = useState<boolean>(true);
+	const [error, setError] = useState(null);
 
 	return (
 		<PodcastContext.Provider
@@ -61,6 +66,8 @@ export function PodcastProvider({ children }: Props) {
 				setPlaySinglePodcast,
 				togglePlaying,
 				setTogglePlaying,
+				error,
+				setError,
 			}}
 		>
 			{children}
