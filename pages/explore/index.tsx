@@ -41,11 +41,7 @@ function ExplorePage() {
 								itunesId
 								description
 								imageUrl
-							itunesInfo{
-								uuid
-								publisherName
-									baseArtworkUrlOf(size: 640)
-							}
+							
 						}
 				}
 					`;
@@ -72,7 +68,7 @@ function ExplorePage() {
 		<div>
 			<div className="sticky top-0 left-0 z-30 mx-auto mt-5 hidden w-full max-w-[400px] bg-[#16151b] py-3 text-white md:mt-0 md:flex md:max-w-full">
 				<h1 className="text-xl md:text-2xl">
-					<span className="text-3xl font-bold text-purple-500">Po</span>
+					<span className="text-3xl font-bold text-[#0f9c4a]">Po</span>
 					dcasts
 				</h1>
 			</div>
@@ -88,7 +84,7 @@ function ExplorePage() {
 					</p>
 					<button
 						onClick={fetchData}
-						className=" mt-4 rounded-md bg-[#2d0796] py-2 px-10 text-lg text-white shadow-md active:scale-[1.1]"
+						className=" mt-4 rounded-md bg-[#0f9c4a] py-2 px-10 text-lg text-white shadow-md active:scale-[1.1]"
 					>
 						Retry
 					</button>
