@@ -105,8 +105,8 @@ function PlayingNow() {
 										: playSinglePodcast?.description?.slice(0, 45)}
 								</h1>
 							) : (
-								<h1 className=" text-2xl">
-									<span className="text-purple-500">Po</span>dcast.
+								<h1 className=" text-2xl font-medium">
+									<span className="text-[#0f9c4a]">Po</span>dcast.
 								</h1>
 							)}
 							<div className="scrolling-carousel">
