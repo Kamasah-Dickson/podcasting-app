@@ -40,7 +40,7 @@ export default function App({ Component, pageProps }: AppProps) {
 		<PodcastProvider>
 			<SkeletonTheme baseColor="#1c1c1d" highlightColor="#515151">
 				<div className="my-max mx-auto grid w-full grid-cols-1 gap-1 pt-3 sm:flex sm:justify-between sm:gap-3 md:pt-0">
-					<div className="sticky top-0 row-start-3 flex flex-1 md:flex-[1.5]">
+					<div className="sticky top-0 z-50 row-start-3 flex flex-1 md:flex-[1.5]">
 						<Sidebar setShowPlaying={setShowPlaying} location={location} />
 					</div>
 					<main className={`row-start-1 shrink sm:flex-[3.5]`}>

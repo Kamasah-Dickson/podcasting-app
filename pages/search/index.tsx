@@ -68,9 +68,9 @@ function SearchPage() {
 					onChange={(e) => setInputValue(e.target.value)}
 					type="text"
 					placeholder="Search Podcast..."
-					className="  sticky top-3 z-40 mx-auto w-full rounded-md border-2 border-[#0f9c4a] bg-black p-1 text-white outline-1 outline-[white] placeholder:pl-2 placeholder:text-sm placeholder:text-[#6d6a6a]"
+					className="  sticky top-3 z-30 mx-auto w-full rounded-md border-2 border-[#0f9c4a] bg-black p-1 text-white outline-1 outline-[white] placeholder:pl-2 placeholder:text-sm placeholder:text-[#6d6a6a]"
 				/>
-				<div className="grid h-screen content-center text-center text-white">
+				<div className="grid content-center text-center text-white">
 					{loading && <CardSkeleton cards={25} />}
 					{error ? (
 						<div className="flex h-screen flex-col items-center justify-center gap-2">
