@@ -15,17 +15,17 @@ function Sidebar({ location, setShowPlaying }: locationProp) {
 	const { togglePlaying, setTogglePlaying } = useContext(PodcastContext);
 
 	return (
-		<div className="fixed left-0 bottom-0 z-40 w-full bg-[#16151b] sm:sticky sm:top-0 sm:left-0 sm:h-screen">
+		<div className="fixed left-0 bottom-0 z-40 w-full bg-[#060807] sm:sticky sm:top-0 sm:left-0 sm:h-screen sm:bg-transparent">
 			<Link href="/explore" className=" relative hidden text-center md:block">
 				<h1 className="relative mx-auto w-fit py-3 text-4xl font-medium capitalize text-white">
-					<span className="text-purple-500">Po</span>dcast.
+					<span className="text-[#0f9c4a]">myPo</span>dcast.
 					<div className="absolute -top-2 -right-3 text-[11px] text-gray-500">
 						{location}
 					</div>
 				</h1>
 			</Link>
 			<nav className="my-scroll mx-auto w-full overflow-auto xs:w-fit xs:overflow-hidden">
-				<ul className="flex w-full justify-center gap-4 py-3 text-gray-400 xs:w-fit sm:mt-5 sm:flex-col sm:py-0">
+				<ul className="flex w-full justify-center gap-4 p-3 py-3 text-gray-400 xs:w-fit sm:mt-5 sm:flex-col sm:py-0">
 					{sideLinks.map((data) => {
 						return (
 							<Link
