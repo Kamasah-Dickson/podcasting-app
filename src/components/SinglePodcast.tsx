@@ -17,7 +17,7 @@ function SinglePodcast({ data }: podcastProp) {
 	return (
 		<Link
 			href={`/explore/${data.name}`}
-			className="mx-auto w-full  max-w-[250px] cursor-pointer rounded-3xl bg-[#1c1c1d] p-2 shadow-xl transition-colors hover:bg-[#1c1c1d4d]"
+			className="mx-auto w-full max-w-[320px] cursor-pointer rounded-3xl bg-[#1c1c1d] p-2 shadow-xl transition-colors hover:bg-[#1c1c1d4d] md:max-w-[250px]"
 		>
 			<div className="h-[180px] rounded-xl">
 				<Image
