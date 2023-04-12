@@ -8,6 +8,7 @@ import "react-loading-skeleton/dist/skeleton.css";
 import { useRouter } from "next/router";
 import Link from "next/link";
 import { PodcastContext, PodcastProvider } from "@/src/context/podcastContext";
+import Footer from "@/src/components/Footer";
 
 export default function App({ Component, pageProps }: AppProps) {
 	const path = useRouter();
@@ -39,7 +40,7 @@ export default function App({ Component, pageProps }: AppProps) {
 		<PodcastProvider>
 			<SkeletonTheme baseColor="#1c1c1d" highlightColor="#515151">
 				<div className="my-max mx-auto grid w-full grid-cols-1 gap-1 pt-3 sm:flex sm:justify-between sm:gap-3 md:pt-0">
-					<div className="row-start-3 flex flex-1 md:flex-[1.5]">
+					<div className="sticky top-0 row-start-3 flex flex-1 md:flex-[1.5]">
 						<Sidebar setShowPlaying={setShowPlaying} location={location} />
 					</div>
 					<main className={`row-start-1 shrink sm:flex-[3.5]`}>
@@ -48,7 +49,7 @@ export default function App({ Component, pageProps }: AppProps) {
 							className=" relative block text-center md:hidden"
 						>
 							<h1 className="relative mx-auto w-fit py-3 text-4xl font-medium capitalize text-white">
-								<span className="text-purple-500">Po</span>dcast.
+								<span className="text-[#0f9c4a]">myPo</span>dcast.
 								<div className="absolute -top-2 -right-3 text-[11px] text-gray-500">
 									{location}
 								</div>
@@ -61,7 +62,7 @@ export default function App({ Component, pageProps }: AppProps) {
 
 					<div
 						className={`fixed ${showPlaying && "lg:my-block hidden"}
-								 "my-scroll xl:flex-[2]" my-scroll top-0 left-0 z-30 row-start-2 mx-auto block h-[100vh] w-full overflow-y-auto bg-[#0a0825ee] sm:fixed sm:h-full sm:flex-[2] sm:bg-transparent sm:py-0 md:flex-[3] lg:sticky xl:flex-[2]
+						"my-scroll xl:flex-[2]" my-scroll top-0 left-0 z-30 row-start-2 mx-auto block h-[100vh] w-full overflow-y-auto bg-[#0a0825ee] sm:fixed sm:h-full sm:flex-[2] sm:bg-transparent sm:py-0 md:flex-[3] lg:sticky xl:flex-[2]
 						`}
 					>
 						{!error && (
@@ -72,6 +73,7 @@ export default function App({ Component, pageProps }: AppProps) {
 						<PlayingNow />
 					</div>
 				</div>
+				<Footer />
 			</SkeletonTheme>
 		</PodcastProvider>
 	);
