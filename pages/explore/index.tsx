@@ -3,7 +3,6 @@ import { GraphQLClient } from "graphql-request";
 import CardSkeleton from "@/src/components/CardSkeleton";
 import SinglePodcast from "@/src/components/SinglePodcast";
 import { PodcastContext } from "@/src/context/podcastContext";
-import { toast, ToastContainer } from "react-toastify";
 
 function ExplorePage() {
 	const [podcasts, setPodcasts] = useState([]);
@@ -52,6 +51,7 @@ function ExplorePage() {
 			.then((response: any) => {
 				setPodcasts(response.getMultiplePodcastSeries);
 				setLoading(false);
+
 				setError(null);
 			})
 			.catch((error) => {
@@ -60,27 +60,14 @@ function ExplorePage() {
 			});
 	}
 
-	function CustomToast() {
-		return (
-			<div>
-				<h1>Welcome to MyPodcast v2 🎉</h1>
-				<p>You can now Search for your favorite podcasts...enjoy 🚀</p>
-			</div>
-		);
-	}
-
 	useEffect(() => {
 		fetchData();
-		toast(<CustomToast />, {
-			position: toast.POSITION.TOP_CENTER,
-			autoClose: 5000,
-		});
+
 		// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, []);
 
 	return (
 		<div>
-			<ToastContainer />
 			<div className="sticky top-0 left-0 z-30 mx-auto mt-5 hidden w-full max-w-[400px] bg-[#16151b] py-3 text-white md:mt-0 md:flex md:max-w-full">
 				<h1 className="text-xl md:text-2xl">
 					<span className="text-3xl font-bold text-[#0f9c4a]">Po</span>
