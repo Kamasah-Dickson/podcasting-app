@@ -11,9 +11,7 @@ function CardSkeleton({ cards }: cardProp) {
 			return (
 				<div
 					key={index}
-					className={`card mx-auto mt-3 grid w-full max-w-xs grid-cols-1 gap-4 ${"xs:grid-cols-2"} 
-						lg:grid-cols-2
-					 xl:grid-cols-3`}
+					className="mx-auto w-full max-w-[320px] cursor-pointer rounded-3xl bg-[#1c1c1d] p-2 shadow-xl transition-colors hover:bg-[#1c1c1d4d] md:max-w-[250px]"
 				>
 					<div>
 						<Skeleton height={180} width={200} />
@@ -27,7 +25,9 @@ function CardSkeleton({ cards }: cardProp) {
 		});
 
 	return (
-		<div className="mt-3 grid grid-cols-1 gap-4 lg:grid-cols-3">
+		<div
+			className={`mt-3 grid grid-cols-1 gap-4 xs:grid-cols-2 lg:grid-cols-2 xl:grid-cols-3`}
+		>
 			{cardElements}
 		</div>
 	);
