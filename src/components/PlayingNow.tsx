@@ -135,7 +135,7 @@ function PlayingNow() {
 								)
 							}
 						/>
-						<ToastContainer limit={1} autoClose={5500} />
+						<ToastContainer closeOnClick limit={1} autoClose={5500} />
 					</div>
 				</div>
 			</div>
