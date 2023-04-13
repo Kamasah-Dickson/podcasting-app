@@ -11,6 +11,16 @@ const nextConfig = {
 			"d3wo5wojvuv7l.cloudfront.net",
 			"episodes.castos.com",
 		],
+		remotePatterns: [
+			{
+				protocol: "http",
+				hostname: "**",
+			},
+			{
+				protocol: "https",
+				hostname: "**",
+			},
+		],
 	},
 };
 
