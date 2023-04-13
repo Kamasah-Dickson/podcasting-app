@@ -19,6 +19,7 @@
     "graphql": "^16.6.0",
     "graphql-request": "^5.2.0",
     "next": "13.2.3",
+    "nextjs-progressbar": "^0.0.16",
     "react": "18.2.0",
     "react-dom": "18.2.0",
     "react-h5-audio-player": "^3.8.6",
