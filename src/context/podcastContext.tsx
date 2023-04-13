@@ -25,8 +25,8 @@ interface PodchaserContextType {
 	};
 	setTogglePlaying: Dispatch<SetStateAction<boolean>>;
 	togglePlaying: boolean;
-	setError: Dispatch<SetStateAction<null>>;
-	error: unknown;
+	setError: Dispatch<SetStateAction<string | null>>;
+	error: string | null;
 }
 
 export const PodcastContext = createContext<PodchaserContextType>({
@@ -57,7 +57,7 @@ export function PodcastProvider({ children }: Props) {
 	});
 
 	const [togglePlaying, setTogglePlaying] = useState<boolean>(true);
-	const [error, setError] = useState(null);
+	const [error, setError] = useState<string | null>(null);
 
 	return (
 		<PodcastContext.Provider
