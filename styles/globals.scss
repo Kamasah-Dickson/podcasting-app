@@ -16,6 +16,17 @@
 	body {
 		min-height: 100vh;
 		background-color: #16151b;
+		&::-webkit-scrollbar {
+			background-color: #1b1629;
+			width: 15px;
+		}
+		&::-webkit-scrollbar-thumb {
+			background: linear-gradient(#2d0796, #0f9c4a);
+			border-radius: 20px;
+			&:hover {
+				background: linear-gradient(#0f9c4a, #2d0796, #0f9c4a);
+			}
+		}
 	}
 
 	a {
@@ -25,7 +36,12 @@
 
 	.my-hover {
 		background-color: #0f9c4a;
-		border-radius: 6px;
+		transition: 0.3s ease;
+		color: white;
+		width: fit-content;
+	}
+	.my-hover2 {
+		background-color: #2d0796;
 		transition: 0.3s ease;
 		color: white;
 		width: fit-content;
