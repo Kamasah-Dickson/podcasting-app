@@ -3,6 +3,7 @@ import { GraphQLClient } from "graphql-request";
 import CardSkeleton from "@/src/components/CardSkeleton";
 import SinglePodcast from "@/src/components/SinglePodcast";
 import { PodcastContext } from "@/src/context/podcastContext";
+import { toast, ToastContainer } from "react-toastify";
 
 function ExplorePage() {
 	const [podcasts, setPodcasts] = useState([]);
@@ -24,6 +25,7 @@ function ExplorePage() {
 		const query = `
 			query {
 				getMultiplePodcastSeries(uuids:[	
+						"242f0eaa-5165-41db-8bb4-7e1e56f99d2f",
 						"762eb657-df93-4cfe-8699-ec34552aeaf9",
 						"08c861b2-930b-4919-a24a-3489c7e1a40d",
 						"8710840e-572f-46a2-a53c-5bffc26d71b2",
@@ -33,7 +35,6 @@ function ExplorePage() {
 						"de11cc1c-4d72-4ff7-9620-3cba361b53b0",
 						"5b68e721-b0ef-4ea5-801a-348a6d493549",
 						"ab4d5e01-5de0-4272-ba75-8a16db8a9e8a",
-						"242f0eaa-5165-41db-8bb4-7e1e56f99d2f",
 						"232491f8-92ee-4564-b650-c60305e529d7",
 						]){
 							uuid
@@ -59,13 +60,27 @@ function ExplorePage() {
 			});
 	}
 
+	function CustomToast() {
+		return (
+			<div>
+				<h1>Welcome to MyPodcast v2 🎉</h1>
+				<p>You can now Search for your favorite podcasts...enjoy 🚀</p>
+			</div>
+		);
+	}
+
 	useEffect(() => {
 		fetchData();
+		toast(<CustomToast />, {
+			position: toast.POSITION.TOP_CENTER,
+			autoClose: 5000,
+		});
 		// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, []);
 
 	return (
 		<div>
+			<ToastContainer />
 			<div className="sticky top-0 left-0 z-30 mx-auto mt-5 hidden w-full max-w-[400px] bg-[#16151b] py-3 text-white md:mt-0 md:flex md:max-w-full">
 				<h1 className="text-xl md:text-2xl">
 					<span className="text-3xl font-bold text-[#0f9c4a]">Po</span>

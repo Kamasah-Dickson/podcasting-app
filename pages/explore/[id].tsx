@@ -5,7 +5,6 @@ import { GraphQLClient } from "graphql-request";
 import { useRouter } from "next/router";
 import { PodcastContext } from "@/src/context/podcastContext";
 import CardSkeleton from "@/src/components/CardSkeleton";
-
 interface PodcastInterface {
 	imageUrl: string;
 	name: string;
@@ -71,7 +70,6 @@ function ListenToSingleCast() {
 			.request(query)
 			.then((data: any) => {
 				setEpisodes(data.getPodcastSeries.episodes);
-				// console.log(data.getPodcastSeries.episodes);
 				setfullPodcast(data.getPodcastSeries);
 				setLoading(false);
 				setError(null);
@@ -115,8 +113,8 @@ function ListenToSingleCast() {
 						) : (
 							<div className=" h-full w-full ">
 								<Image
-									width={100}
-									height={100}
+									width={500}
+									height={500}
 									property="true"
 									src={fullPodcast?.imageUrl}
 									alt={fullPodcast?.name}
@@ -188,8 +186,8 @@ function ListenToSingleCast() {
 										>
 											<div className="h-auto w-full flex-1 lg:h-full ">
 												<Image
-													width={100}
-													height={100}
+													width={200}
+													height={200}
 													src={data?.imageUrl}
 													alt={data.name}
 													priority
@@ -202,7 +200,7 @@ function ListenToSingleCast() {
 														? data.name.slice(0, 35) + "..."
 														: data.name}
 												</h3>
-												<p className=" hidden text-sm text-[grey] lg:text-[12px] xl:flex">
+												<p className=" hidden text-sm text-[white] lg:text-[12px] xl:flex">
 													{data.description
 														? data?.description?.substring(0, 70) + "..."
 														: fullPodcast?.description?.substring(0, 70) +
