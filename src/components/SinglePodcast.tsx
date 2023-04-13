@@ -1,5 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
+import me from "../img/EgLF6Jmi_4x.jpg";
 
 interface data {
 	imageUrl: string;
@@ -14,6 +15,10 @@ interface podcastProp {
 }
 
 function SinglePodcast({ data }: podcastProp) {
+	if (!data) {
+		return <div>No data available</div>;
+	}
+
 	return (
 		<Link
 			href={`/explore/${data.name}`}
@@ -23,10 +28,13 @@ function SinglePodcast({ data }: podcastProp) {
 				<Image
 					className="h-full w-full rounded-2xl object-cover text-white shadow-md"
 					alt={data.name}
-					src={data.imageUrl}
-					width={100}
-					height={100}
+					src={data.imageUrl || me}
+					width={150}
+					height={150}
 					priority
+					onError={(event) => {
+						event.currentTarget.src = me.src;
+					}}
 				/>
 			</div>
 			<div className="py-1 text-left leading-[1] text-white">
