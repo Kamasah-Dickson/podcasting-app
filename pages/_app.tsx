@@ -10,6 +10,7 @@ import Link from "next/link";
 import { PodcastContext, PodcastProvider } from "@/src/context/podcastContext";
 import Footer from "@/src/components/Footer";
 import ProgressBar from "nextjs-progressbar";
+import { toast, ToastContainer } from "react-toastify";
 
 export default function App({ Component, pageProps }: AppProps) {
 	const path = useRouter();
@@ -18,10 +19,30 @@ export default function App({ Component, pageProps }: AppProps) {
 	const [showPlaying, setShowPlaying] = useState(true);
 	const { error } = useContext(PodcastContext);
 
+	function CustomToast() {
+		return (
+			<div>
+				<h1>Welcome to v2 of MyPodcast🎉</h1>
+				<p>You can now Search for your favorite podcasts🚀</p>
+			</div>
+		);
+	}
+
 	useEffect(() => {
 		pathname == "/" && path.push("/explore");
+
 		// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, [pathname]);
+
+	useEffect(() => {
+		pathname === "/explore" &&
+			toast.info(<CustomToast />, {
+				position: toast.POSITION.TOP_CENTER,
+				autoClose: 5000,
+				theme: "colored",
+			});
+		// eslint-disable-next-line react-hooks/exhaustive-deps
+	}, []);
 
 	useEffect(() => {
 		try {
@@ -57,6 +78,7 @@ export default function App({ Component, pageProps }: AppProps) {
 						</Link>
 						<div className="sm:mb-16 lg:mb-0">
 							<ProgressBar color="#0f9c4a" height={3} />
+							<ToastContainer limit={1} closeOnClick />;
 							<Component {...pageProps} />
 						</div>
 					</main>
