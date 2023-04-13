@@ -82,7 +82,7 @@ function PlayingNow() {
 				<div
 					className={`${
 						togglePlaying ? "hidden lg:block" : " block"
-					} my-scroll my-scroll mx-auto mb-3 h-screen w-full max-w-[500px] rounded-lg p-1 py-5 sm:fixed sm:right-0 sm:z-30 sm:mt-0 sm:flex sm:h-screen sm:items-start sm:bg-[#080225e3] lg:relative lg:h-fit lg:bg-transparent`}
+					} my-scroll mx-auto mb-3 h-screen w-full max-w-[85%] overflow-scroll p-1 py-5 sm:fixed  sm:right-0 sm:z-30 sm:mt-0 sm:flex sm:h-screen sm:items-start sm:border-l-2 sm:border-black sm:bg-[#080225e3] md:max-w-[70%] lg:relative lg:h-fit lg:max-w-[500px] lg:border-none lg:bg-transparent`}
 				>
 					<div className="mx-auto mb-10 w-full max-w-[350px] rounded-lg bg-[#2d0796] p-5 sm:max-w-[350px] md:p-5">
 						<div className="h-[270px] w-full rounded-2xl p-1 md:p-2">
@@ -92,8 +92,8 @@ function PlayingNow() {
 								}
 								priority={true}
 								alt={playSinglePodcast.name}
-								width={100}
-								height={100}
+								width={400}
+								height={400}
 								className=" mx-auto h-full w-[250px] rounded-2xl object-cover sm:w-full"
 							/>
 						</div>
