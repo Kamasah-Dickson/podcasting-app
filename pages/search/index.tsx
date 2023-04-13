@@ -1,15 +1,18 @@
 import { PodcastContext } from "@/src/context/podcastContext";
 import { GraphQLClient } from "graphql-request";
 import Head from "next/head";
-import { useEffect, useContext, useState } from "react";
+import { useEffect, useContext, useState, useRef } from "react";
 import CardSkeleton from "@/src/components/CardSkeleton";
 import SinglePodcast from "@/src/components/SinglePodcast";
+import { FormEvent } from "react";
+import { AiOutlineSearch } from "react-icons/ai";
 
 function SearchPage() {
 	const [podcasts, setPodcasts] = useState([]);
 	const [loading, setLoading] = useState(true);
 	const { setError, error } = useContext(PodcastContext);
-	const [inputValue, setInputValue] = useState("");
+	const [inputValue, setInputValue] = useState("Dear future wifey ");
+
 	function fetchData() {
 		setError(null);
 		setLoading(true);
@@ -24,7 +27,7 @@ function SearchPage() {
 
 		const query = `
   query {
-    searchForTerm(term:"Billy graham", filterForTypes:PODCASTSERIES){
+    searchForTerm(term:"${inputValue}", filterForTypes:PODCASTSERIES){
       searchId
       podcastSeries{
         uuid
@@ -41,6 +44,10 @@ function SearchPage() {
 			.request(query)
 			.then((response: any) => {
 				setPodcasts(response.searchForTerm.podcastSeries);
+				if (response.searchForTerm.podcastSeries === 0) {
+					setLoading(false);
+					setError("Sorry Podcast was not found");
+				}
 				setLoading(false);
 				setError(null);
 			})
@@ -55,6 +62,17 @@ function SearchPage() {
 		// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, []);
 
+	const inputRef = useRef<HTMLInputElement | null>(null);
+
+	function handleSubmit(e: FormEvent<HTMLFormElement>) {
+		e.preventDefault();
+		if (inputRef?.current?.value === "") {
+			return;
+		} else {
+			fetchData();
+		}
+	}
+
 	return (
 		<>
 			<Head key="111">
@@ -63,13 +81,25 @@ function SearchPage() {
 				<meta name="viewport" content="width=device-width, initial-scale=1" />
 				<link rel="icon" href="/favicon.ico" />
 			</Head>
-			<div className="mx-auto mt-3 h-fit">
-				<input
-					onChange={(e) => setInputValue(e.target.value)}
-					type="text"
-					placeholder="Search for Podcasts..."
-					className="  sticky top-3 z-30 mx-auto w-full rounded-md border-2 border-[#0f9c4a] bg-black p-1 text-white outline-1 outline-[white] placeholder:pl-2 placeholder:text-sm placeholder:text-[#6d6a6a]"
-				/>
+			<form className="mx-auto mt-3 h-fit" onSubmit={(e) => handleSubmit(e)}>
+				<div className="sticky top-3 z-30 mx-auto flex w-full items-center justify-center overflow-hidden rounded-md border-2 border-[#0f9c4a] bg-black">
+					<input
+						ref={inputRef}
+						className="h-full flex-1 bg-black p-2 pl-2 text-white outline-none  placeholder:text-sm placeholder:text-[#888686] "
+						onChange={(e) => setInputValue(e.target.value.trim())}
+						type="text"
+						placeholder="Search for your favorite Podcasts..."
+					/>
+					<div className="p-2">
+						<AiOutlineSearch
+							size={20}
+							color="white"
+							cursor="pointer"
+							className="active:scale-[1.07]"
+							onClick={() => inputValue.length !== 0 && fetchData()}
+						/>
+					</div>
+				</div>
 				<div className="grid content-center text-center text-white">
 					{loading && <CardSkeleton cards={25} />}
 					{error ? (
@@ -100,7 +130,7 @@ function SearchPage() {
 						</div>
 					)}
 				</div>
-			</div>
+			</form>
 		</>
 	);
 }
